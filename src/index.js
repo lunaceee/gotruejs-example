@@ -6,3 +6,19 @@ const auth = new GoTrue({
 });
 
 window.auth = auth;
+
+document.querySelector("form[name='signup']").addEventListener("submit", e => {
+  e.preventDefault();
+  const form = e.target;
+  const { email, password } = form.elements;
+  auth
+    .signup(email.value, password.value)
+    .then(response =>
+      showMessage("Success! Response: " + JSON.stringify(response), form)
+    )
+    .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
+});
+
+function showMessage(msg, el) {
+  el.querySelector(".message").textContent = msg;
+}
