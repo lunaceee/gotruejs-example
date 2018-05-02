@@ -5,29 +5,6 @@
   </head>
   <body>
     <h1>GoTrue JS Examples</h1>
-    <p>
-      Hi there! This is my playground to learn more about Netlify’s
-      <a href="https://github.com/netlify/gotrue-js">GoTrue JS</a> client library.
-    </p>
-    <p>
-      The code for this site is on
-      <a href="https://github.com/imorente/gotruejs-examples">GitHub</a>.
-    </p>
-    <p>
-      Open your browser’s developer tools and type <code>auth</code> in the
-      console to play around with the instance. You can try:
-    </p>
-    <pre>
-      <code>
-        var email = "youremail@example.com";
-        var password = "a-very-secret-password";
-
-        auth.signup(email, password)
-          .then(response => console.log("success!", response))
-          .catch(error => console.log("error :(", error));
-      </code>
-    </pre>
-
     <article>
       <h2>Sign up</h2>
       <form name="signup">
@@ -40,8 +17,32 @@
         </p>
         <button type="submit">Sign up</button>
       </form>
-    </article>
 
+
+      <h2>Log in user</h2>
+      <form name="login_user">
+        <div class="message"></div>
+        <p>
+          <label>Email<br/><input type="email" name="email" required/></label>
+        </p>
+        <p>
+          <label>Password<br/><input type="password" name="password" required/></label>
+        </p>
+        <button type="submit">Log in</button>
+      </form>
+
+      <h2>Log in</h2>
+      <form name="login">
+        <div class="message"></div>
+        <p>
+          <label>Email<br/><input type="email" name="email" required/></label>
+        </p>
+        <p>
+          <label>Password<br/><input type="password" name="password" required/></label>
+        </p>
+        <button type="submit">Log in</button>
+      </form>
+    </article>
     <script src="main.js"></script>
   </body>
 </html>
