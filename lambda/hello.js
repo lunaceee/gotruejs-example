@@ -255,7 +255,7 @@ exports.handler = (() => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(user)
+      body: JSON.stringify([event, context.clientContext])
     };
   });
 
