@@ -7,6 +7,6 @@ const auth = new GoTrue({
 exports.handler = async function(event, context) {
   return {
     statusCode: 200,
-    body: JSON.stringify({ event } + { context })
+    body: JSON.stringify({ context })
   };
 };

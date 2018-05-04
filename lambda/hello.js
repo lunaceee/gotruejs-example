@@ -253,7 +253,7 @@ exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context) {
     return {
       statusCode: 200,
-      body: JSON.stringify({ event } + { context })
+      body: JSON.stringify({ context })
     };
   });
 
