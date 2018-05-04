@@ -255,7 +255,7 @@ exports.handler = (() => {
 
     return {
       statusCode: 200,
-      body: "{ event, context }"
+      body: { event, context }
     };
   });
 
