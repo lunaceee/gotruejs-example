@@ -20,35 +20,6 @@ document.querySelector("form[name='signup']").addEventListener("submit", e => {
     .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
 });
 
-//log in
-document.querySelector("form[name='login']").addEventListener("submit", e => {
-  e.preventDefault();
-  const form = e.target;
-  const { email, password } = form.elements;
-  auth
-    .login(email.value, password.value)
-    .then(response =>
-      showMessage("Success! Response: " + JSON.stringify(response), form)
-    )
-    .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
-});
-
-//reset password
-document.querySelector("form[name='resetpw']").addEventListener("submit", e => {
-  e.preventDefault();
-  const form = e.target;
-  const email = "luna+03@netlify.com";
-  auth
-    .requestPasswordRecovery(email)
-    .then(response =>
-      showMessage(
-        "Success!Recovery email sent" + JSON.stringify(response),
-        form
-      )
-    )
-    .catch(error => console.log("Error sending recovery mail: %o", error));
-});
-
 function showMessage(msg, el) {
   el.querySelector(".message").textContent = msg;
 }
