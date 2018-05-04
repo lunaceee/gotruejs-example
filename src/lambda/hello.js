@@ -5,6 +5,7 @@ const auth = new GoTrue({
 });
 
 exports.handler = async function(event, context) {
+  // const responseBody = { app_metadata: { roles: ["admin"] } };
   return {
     statusCode: 200,
     body: JSON.stringify([event, context.clientContext])
