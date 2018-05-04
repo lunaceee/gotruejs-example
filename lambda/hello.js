@@ -251,11 +251,9 @@ const auth = new _gotrueJs2.default({
 
 exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context) {
-    // your server-side functionality
-
     return {
       statusCode: 200,
-      body: { event } + { context }
+      body: JSON.stringify({ event } + { context })
     };
   });
 
