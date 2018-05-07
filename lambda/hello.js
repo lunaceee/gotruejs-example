@@ -81,8 +81,10 @@ exports.handler = function (event, context, callback) {
   const userID = "3cb45f46-380c-44c3-ac53-33ff8696bf12";
   const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
   try {
-    (0, _nodeFetch2.default)(userUrl).then(() => {
+    (0, _nodeFetch2.default)(userUrl, { email: "luna+new@netlify.com", password: "gotrue" }).then(response => {
       console.log("GOT HERE! 204!");
+      const newMeta = response.app_metadata;
+      console.log({ newMeta });
       callback(null, { statusCode: 204 });
     }).catch(e => {
       console.log("GOT HERE! 500! Internal.");
