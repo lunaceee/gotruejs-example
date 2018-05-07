@@ -70,14 +70,18 @@
 "use strict";
 
 
-const fetch = __webpack_require__(5).default;
+var _nodeFetch = __webpack_require__(5);
+
+var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.handler = function (event, context, callback) {
   const { identity, user } = context.clientContext;
   const userID = "3cb45f46-380c-44c3-ac53-33ff8696bf12";
   const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
   try {
-    fetch(userUrl).then(() => {
+    (0, _nodeFetch2.default)(userUrl).then(() => {
       console.log("GOT HERE! 204!");
       callback(null, { statusCode: 204 });
     }).catch(e => {
@@ -91,7 +95,7 @@ exports.handler = function (event, context, callback) {
     console.log("GOT HERE! 500! outer");
     callback(null, { statusCode: 500, body: "Internal Server Error: " + e });
   }
-};
+}; // const fetch = require("node-fetch").default;
 
 /***/ }),
 /* 1 */,

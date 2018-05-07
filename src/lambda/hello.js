@@ -1,4 +1,5 @@
-const fetch = require("node-fetch").default;
+// const fetch = require("node-fetch").default;
+import fetch from "node-fetch";
 
 exports.handler = function(event, context, callback) {
   const { identity, user } = context.clientContext;
