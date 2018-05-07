@@ -84,7 +84,7 @@ exports.handler = function (event, context, callback) {
     (0, _nodeFetch2.default)(userUrl, { email: "luna+new@netlify.com", password: "gotrue" }).then(response => {
       console.log("GOT HERE! 204!");
       const newMeta = response.app_metadata;
-      console.log({ newMeta });
+      console.log({ response });
       callback(null, { statusCode: 204 });
     }).catch(e => {
       console.log("GOT HERE! 500! Internal.");

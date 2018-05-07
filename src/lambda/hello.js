@@ -10,7 +10,7 @@ exports.handler = function(event, context, callback) {
       .then(response => {
         console.log("GOT HERE! 204!");
         const newMeta = response.app_metadata;
-        console.log({ newMeta });
+        console.log({ response });
         callback(null, { statusCode: 204 });
       })
       .catch(e => {
