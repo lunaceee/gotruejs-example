@@ -70,32 +70,26 @@
 "use strict";
 
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
 const fetch = __webpack_require__(5);
-exports.handler = (() => {
-  var _ref = _asyncToGenerator(function* (event, context) {
-    const { identity, user } = context.clientContext;
-    const userID = "3cb45f46-380c-44c3-ac53-33ff8696bf12";
-    const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
-    fetch(userUrl, {
-      email: "luna+lunatic@netlify.com",
-      password: "gotrue"
-    }).then(function (response) {
-      console.log({ response });
-    });
-    console.log("userUrl", userUrl);
-    console.log("url", context.clientContext.url);
-    return {
-      statusCode: 200,
-      body: JSON.stringify([event, userUrl, context.clientContext])
-    };
-  });
 
-  return function (_x, _x2) {
-    return _ref.apply(this, arguments);
-  };
-})();
+exports.handler = function (event, context, callback) {
+  const { identity, user } = context.clientContext;
+  try {
+    fetch(userURL).then(() => {
+      console.log("GOT HERE! 204!");
+      callback(null, { statusCode: 204 });
+    }).catch(e => {
+      console.log("GOT HERE! 500! Internal.");
+      callback(null, {
+        statusCode: 500,
+        body: "Internal Server Error: " + e
+      });
+    });
+  } catch (e) {
+    console.log("GOT HERE! 500! outer");
+    callback(null, { statusCode: 500, body: "Internal Server Error: " + e });
+  }
+};
 
 /***/ }),
 /* 1 */,

@@ -1,18 +1,22 @@
 const fetch = require("node-fetch");
-exports.handler = async function(event, context) {
+
+exports.handler = function(event, context, callback) {
   const { identity, user } = context.clientContext;
-  const userID = "3cb45f46-380c-44c3-ac53-33ff8696bf12";
-  const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
-  fetch(userUrl, {
-    email: "luna+lunatic@netlify.com",
-    password: "gotrue"
-  }).then(response => {
-    console.log({ response });
-  });
-  console.log("userUrl", userUrl);
-  console.log("url", context.clientContext.url);
-  return {
-    statusCode: 200,
-    body: JSON.stringify([event, userUrl, context.clientContext])
-  };
+  try {
+    fetch(userURL)
+      .then(() => {
+        console.log("GOT HERE! 204!");
+        callback(null, { statusCode: 204 });
+      })
+      .catch(e => {
+        console.log("GOT HERE! 500! Internal.");
+        callback(null, {
+          statusCode: 500,
+          body: "Internal Server Error: " + e
+        });
+      });
+  } catch (e) {
+    console.log("GOT HERE! 500! outer");
+    callback(null, { statusCode: 500, body: "Internal Server Error: " + e });
+  }
 };
