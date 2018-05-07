@@ -2,7 +2,7 @@ import "file-loader?name=index.html!./index.html";
 import GoTrue from "gotrue-js";
 
 const auth = new GoTrue({
-  APIUrl: "https://kaldi-identity-access-test.netlify.com/.netlify/identity"
+  APIUrl: "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity"
 });
 
 window.auth = auth;
