@@ -5,6 +5,6 @@ exports.handler = async function(event, context) {
   console.log(userUrl);
   return {
     statusCode: 200,
-    body: JSON.stringify([event, context.clientContext])
+    body: JSON.stringify([event, userUrl, context.clientContext])
   };
 };

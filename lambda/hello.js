@@ -80,7 +80,7 @@ exports.handler = (() => {
     console.log(userUrl);
     return {
       statusCode: 200,
-      body: JSON.stringify([event, context.clientContext])
+      body: JSON.stringify([event, userUrl, context.clientContext])
     };
   });
 
