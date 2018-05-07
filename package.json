@@ -23,6 +23,7 @@
   "dependencies": {
     "concurrently": "^3.5.1",
     "gotrue-js": "^0.9.20",
-    "netlify-lambda": "^0.4.0"
+    "netlify-lambda": "^0.4.0",
+    "node-fetch": "^2.1.2"
   }
 }
