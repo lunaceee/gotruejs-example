@@ -74,6 +74,8 @@ const fetch = __webpack_require__(5);
 
 exports.handler = function (event, context, callback) {
   const { identity, user } = context.clientContext;
+  const userID = "3cb45f46-380c-44c3-ac53-33ff8696bf12";
+  const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
   try {
     fetch(userURL).then(() => {
       console.log("GOT HERE! 204!");
