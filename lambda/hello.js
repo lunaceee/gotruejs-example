@@ -70,7 +70,8 @@
 "use strict";
 
 
-const fetch = __webpack_require__(8);
+const fetch = __webpack_require__(5).default;
+
 exports.handler = function (event, context, callback) {
   const { identity, user } = context.clientContext;
   const userID = "3cb45f46-380c-44c3-ac53-33ff8696bf12";
@@ -112,27 +113,15 @@ module.exports = require("http");
 module.exports = require("url");
 
 /***/ }),
-/* 5 */,
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("https");
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = require("zlib");
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Headers", function() { return Headers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Request", function() { return Request; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Response", function() { return Response; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FetchError", function() { return FetchError; });
 // Based on https://github.com/tmpvar/jsdom/blob/aa85b2abf07766ff7bf5c1f6daafb3726f2f2db5/lib/jsdom/living/blob.js
 // (MIT licensed)
 
@@ -1681,12 +1670,21 @@ fetch.default = fetch;
 // expose Promise
 fetch.Promise = global.Promise;
 
-module.exports = exports = fetch;
-exports.Headers = Headers;
-exports.Request = Request;
-exports.Response = Response;
-exports.FetchError = FetchError;
+/* harmony default export */ __webpack_exports__["default"] = (fetch);
 
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = require("https");
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = require("zlib");
 
 /***/ })
 /******/ ])));

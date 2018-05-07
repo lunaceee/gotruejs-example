@@ -1,4 +1,5 @@
-const fetch = require("node-fetch/lib/index.js");
+const fetch = require("node-fetch").default;
+
 exports.handler = function(event, context, callback) {
   const { identity, user } = context.clientContext;
   const userID = "3cb45f46-380c-44c3-ac53-33ff8696bf12";
