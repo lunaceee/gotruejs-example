@@ -88,6 +88,7 @@ exports.handler = (() => {
     const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
 
     var authHeader = "Bearer " + identity.token;
+    console.log({ authHeader });
     try {
       (0, _nodeFetch2.default)(userUrl, {
         method: "PUT",

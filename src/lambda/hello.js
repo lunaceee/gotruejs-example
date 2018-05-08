@@ -7,6 +7,7 @@ exports.handler = async (event, context) => {
   const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
 
   var authHeader = "Bearer " + identity.token;
+  console.log({ authHeader });
   try {
     fetch(userUrl, {
       method: "PUT",
