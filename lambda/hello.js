@@ -81,9 +81,9 @@ exports.handler = function (event, context, callback) {
   const userID = user.sub;
   const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
   try {
-    console.log({ payload });
-    (0, _nodeFetch2.default)(userUrl).then(response => {
+    (0, _nodeFetch2.default)(userUrl, { email: "luna+new@netlify.com", password: "gotrue" }).then(response => {
       console.log("GOT HERE! 204!");
+      console.log({ response });
       callback(null, { statusCode: 204 });
     }).catch(e => {
       console.log("GOT HERE! 500! Internal.");
