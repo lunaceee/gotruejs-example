@@ -77,11 +77,13 @@ var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.handler = function (event, context, callback) {
-  const { identity, user } = context.clientContext;
-  const userID = user.sub;
-  const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
   try {
-    (0, _nodeFetch2.default)(userUrl, { email: "luna+new@netlify.com", password: "gotrue" }).then(response => {
+    const { identity, user } = context.clientContext;
+    const userID = user.sub;
+    const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
+    const payload = JSON.parse(event.body);
+    console.log({ payload });
+    (0, _nodeFetch2.default)(userUrl).then(response => {
       console.log("GOT HERE! 204!");
       callback(null, { statusCode: 204 });
     }).catch(e => {
