@@ -7,8 +7,8 @@ exports.handler = async (event, context) => {
 
   try {
     fetch(userUrl, {
-      method: "PUT",
-      body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
+      method: "GET"
+      // body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
     })
       .then(response => {
         console.log("GOT HERE! 204!");
