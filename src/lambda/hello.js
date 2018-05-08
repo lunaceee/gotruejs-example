@@ -1,6 +1,6 @@
 import fetch from "node-fetch"; // equivalent to const fetch = require("node-fetch").default;
 
-exports.handler = function(event, context, callback) {
+exports.handler = async (event, context) => {
   const { identity, user } = context.clientContext;
   const userID = user.sub;
   const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
@@ -13,17 +13,17 @@ exports.handler = function(event, context, callback) {
       .then(response => {
         console.log("GOT HERE! 204!");
         console.log({ response });
-        callback(null, { statusCode: 204 });
+        return { statusCode: 204 };
       })
       .catch(e => {
         console.log("GOT HERE! 500! Internal.");
-        callback(null, {
+        return {
           statusCode: 500,
           body: "Internal Server Error: " + e
-        });
+        };
       });
   } catch (e) {
     console.log("GOT HERE! 500! outer");
-    callback(null, { statusCode: 500, body: "Internal Server Error: " + e });
+    return { statusCode: 500, body: "Internal Server Error: " + e };
   }
 };

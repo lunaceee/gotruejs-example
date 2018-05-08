@@ -76,33 +76,41 @@ var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 // equivalent to const fetch = require("node-fetch").default;
 
-exports.handler = function (event, context, callback) {
-  const { identity, user } = context.clientContext;
-  const userID = user.sub;
-  const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
+exports.handler = (() => {
+  var _ref = _asyncToGenerator(function* (event, context) {
+    const { identity, user } = context.clientContext;
+    const userID = user.sub;
+    const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
 
-  try {
-    (0, _nodeFetch2.default)(userUrl, {
-      method: "PUT",
-      body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
-    }).then(response => {
-      console.log("GOT HERE! 204!");
-      console.log({ response });
-      callback(null, { statusCode: 204 });
-    }).catch(e => {
-      console.log("GOT HERE! 500! Internal.");
-      callback(null, {
-        statusCode: 500,
-        body: "Internal Server Error: " + e
+    try {
+      (0, _nodeFetch2.default)(userUrl, {
+        method: "PUT",
+        body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
+      }).then(function (response) {
+        console.log("GOT HERE! 204!");
+        console.log({ response });
+        return { statusCode: 204 };
+      }).catch(function (e) {
+        console.log("GOT HERE! 500! Internal.");
+        return {
+          statusCode: 500,
+          body: "Internal Server Error: " + e
+        };
       });
-    });
-  } catch (e) {
-    console.log("GOT HERE! 500! outer");
-    callback(null, { statusCode: 500, body: "Internal Server Error: " + e });
-  }
-};
+    } catch (e) {
+      console.log("GOT HERE! 500! outer");
+      return { statusCode: 500, body: "Internal Server Error: " + e };
+    }
+  });
+
+  return function (_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+})();
 
 /***/ }),
 /* 1 */,
