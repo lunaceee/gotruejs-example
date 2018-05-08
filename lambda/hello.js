@@ -81,7 +81,6 @@ exports.handler = function (event, context, callback) {
   const userID = user.sub;
   const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
   try {
-    const payload = JSON.parse(event.body);
     console.log({ payload });
     (0, _nodeFetch2.default)(userUrl).then(response => {
       console.log("GOT HERE! 204!");
