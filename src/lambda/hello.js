@@ -4,7 +4,9 @@ import fetch from "node-fetch";
 exports.handler = function(event, context, callback) {
   const { identity, user } = context.clientContext;
   console.log({ identity, user });
-  // const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
+  const userID = user.sub;
+  const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
+  console.log(userID);
   // try {
   //   fetch(userUrl, { email: "luna+new@netlify.com", password: "gotrue" })
   //     .then(response => {
