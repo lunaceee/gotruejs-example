@@ -28,6 +28,7 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
   auth
     .login(email.value, password.value)
     .then(response => {
+      console.log("token response" + { response });
       const myAuthHeader = "Bearer " + response.token.access_token; //creates the bearer token
       showMessage(
         "Success! Response: " + JSON.stringify([response, myAuthHeader]),
