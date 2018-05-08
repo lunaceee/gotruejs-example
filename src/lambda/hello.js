@@ -1,14 +1,15 @@
-// const fetch = require("node-fetch").default;
-import fetch from "node-fetch";
+import fetch from "node-fetch"; // equivalent to const fetch = require("node-fetch").default;
 
 exports.handler = function(event, context, callback) {
   const { identity, user } = context.clientContext;
   const userID = user.sub;
   const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
-  const payload = JSON.parse(event.body);
-  console.log({ payload });
+
   try {
-    fetch(userUrl, { email: "luna+new@netlify.com", password: "gotrue" })
+    fetch(userUrl, {
+      method: "PUT",
+      body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
+    })
       .then(response => {
         console.log("GOT HERE! 204!");
         console.log({ response });
