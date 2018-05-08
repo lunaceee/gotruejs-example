@@ -87,11 +87,13 @@ exports.handler = (() => {
     const userID = user.sub;
     const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
 
+    var authHeader = "Bearer " + identity.token;
     try {
       (0, _nodeFetch2.default)(userUrl, {
-        method: "GET"
-        // body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
-      }).then(function (response) {
+        method: "GET",
+        headers: { Authorization: authHeader
+          // body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
+        } }).then(function (response) {
         console.log("GOT HERE! 204!");
         console.log({ response });
         return { statusCode: 204 };

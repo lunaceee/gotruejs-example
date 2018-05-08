@@ -6,9 +6,11 @@ exports.handler = async (event, context) => {
   const userID = user.sub;
   const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
 
+  var authHeader = "Bearer " + identity.token;
   try {
     fetch(userUrl, {
-      method: "GET"
+      method: "GET",
+      headers: { Authorization: authHeader }
       // body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
     })
       .then(response => {
