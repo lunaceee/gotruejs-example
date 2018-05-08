@@ -85,14 +85,14 @@ exports.handler = (() => {
     const { identity, user } = context.clientContext;
     console.log({ identity, user });
     const userID = user.sub;
-    const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
+    const userUrl = `${identity.url}/admin/users/${userID}`;
 
-    var authHeader = "Bearer " + identity.token;
+    var adminAuthHeader = "Bearer " + identity.token;
     console.log({ authHeader });
     try {
       (0, _nodeFetch2.default)(userUrl, {
         method: "PUT",
-        headers: { Authorization: authHeader },
+        headers: { Authorization: adminAuthHeader },
         body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
       }).then(function (response) {
         console.log("GOT HERE! 204!");
