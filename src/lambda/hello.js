@@ -7,7 +7,6 @@ exports.handler = async (event, context) => {
   const userUrl = `${identity.url}/admin/users/${userID}`;
 
   var adminAuthHeader = "Bearer " + identity.token;
-  console.log({ authHeader });
   try {
     fetch(userUrl, {
       method: "PUT",

@@ -88,7 +88,6 @@ exports.handler = (() => {
     const userUrl = `${identity.url}/admin/users/${userID}`;
 
     var adminAuthHeader = "Bearer " + identity.token;
-    console.log({ authHeader });
     try {
       (0, _nodeFetch2.default)(userUrl, {
         method: "PUT",
