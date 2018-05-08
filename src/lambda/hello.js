@@ -2,6 +2,7 @@ import fetch from "node-fetch"; // equivalent to const fetch = require("node-fet
 
 exports.handler = async (event, context) => {
   const { identity, user } = context.clientContext;
+  console.log({ identity, user });
   const userID = user.sub;
   const userUrl = `https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity/admin/users/${userID}`;
 
