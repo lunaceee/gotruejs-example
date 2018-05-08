@@ -9,9 +9,9 @@ exports.handler = async (event, context) => {
   var authHeader = "Bearer " + identity.token;
   try {
     fetch(userUrl, {
-      method: "GET",
-      headers: { Authorization: authHeader }
-      // body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
+      method: "PUT",
+      headers: { Authorization: authHeader },
+      body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
     })
       .then(response => {
         console.log("GOT HERE! 204!");

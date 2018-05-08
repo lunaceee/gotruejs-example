@@ -90,10 +90,10 @@ exports.handler = (() => {
     var authHeader = "Bearer " + identity.token;
     try {
       (0, _nodeFetch2.default)(userUrl, {
-        method: "GET",
-        headers: { Authorization: authHeader
-          // body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
-        } }).then(function (response) {
+        method: "PUT",
+        headers: { Authorization: authHeader },
+        body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
+      }).then(function (response) {
         console.log("GOT HERE! 204!");
         console.log({ response });
         return { statusCode: 204 };
