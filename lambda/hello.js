@@ -89,12 +89,15 @@ exports.handler = (() => {
 
     var adminAuthHeader = "Bearer " + identity.token;
     try {
-      return (0, _nodeFetch2.default)(userUrl).then(function (response) {
-        console.log("Deleted a user! 204!");
+      return (0, _nodeFetch2.default)(userUrl, {
+        method: "GET",
+        headers: { Authorization: adminAuthHeader }
+      }).then(function (response) {
+        console.log("Got a user! 204!");
         console.log({ response });
         return { statusCode: 204 };
       }).catch(function (e) {
-        console.log("Failed to delete a user! 500! Internal.");
+        console.log("Failed to get a user! 500! Internal.");
         return {
           statusCode: 500,
           body: "Internal Server Error: " + e

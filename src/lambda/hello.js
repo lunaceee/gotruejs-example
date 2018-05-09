@@ -8,14 +8,17 @@ exports.handler = async (event, context) => {
 
   var adminAuthHeader = "Bearer " + identity.token;
   try {
-    return fetch(userUrl)
+    return fetch(userUrl, {
+      method: "GET",
+      headers: { Authorization: adminAuthHeader }
+    })
       .then(response => {
-        console.log("Deleted a user! 204!");
+        console.log("Got a user! 204!");
         console.log({ response });
         return { statusCode: 204 };
       })
       .catch(e => {
-        console.log("Failed to delete a user! 500! Internal.");
+        console.log("Failed to get a user! 500! Internal.");
         return {
           statusCode: 500,
           body: "Internal Server Error: " + e
