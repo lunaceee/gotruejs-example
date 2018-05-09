@@ -8,7 +8,7 @@ exports.handler = async (event, context) => {
 
   var adminAuthHeader = "Bearer " + identity.token;
   try {
-    fetch(usersUrl, {
+    return fetch(usersUrl, {
       method: "POST",
       headers: { Authorization: adminAuthHeader },
       body: JSON.stringify({ email: "luna+05@netlify.com", password: "gotrue" })

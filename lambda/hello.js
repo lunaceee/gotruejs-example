@@ -89,7 +89,7 @@ exports.handler = (() => {
 
     var adminAuthHeader = "Bearer " + identity.token;
     try {
-      (0, _nodeFetch2.default)(usersUrl, {
+      return (0, _nodeFetch2.default)(usersUrl, {
         method: "POST",
         headers: { Authorization: adminAuthHeader },
         body: JSON.stringify({ email: "luna+05@netlify.com", password: "gotrue" })
