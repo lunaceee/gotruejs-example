@@ -85,7 +85,7 @@ exports.handler = (() => {
     const { identity, user } = context.clientContext;
     console.log({ identity, user });
     const userID = user.sub;
-    const userUrl = `${identity.url}/admin/users/{${user.id}}`;
+    const userUrl = `${identity.url}/admin/users/{${userID}}`;
 
     var adminAuthHeader = "Bearer " + identity.token;
     try {
