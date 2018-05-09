@@ -8,10 +8,7 @@ exports.handler = async (event, context) => {
 
   var adminAuthHeader = "Bearer " + identity.token;
   try {
-    return fetch(userUrl, {
-      method: "DELETE",
-      headers: { Authorization: adminAuthHeader }
-    })
+    return fetch(userUrl)
       .then(response => {
         console.log("Deleted a user! 204!");
         console.log({ response });

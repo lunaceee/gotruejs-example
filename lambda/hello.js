@@ -89,10 +89,7 @@ exports.handler = (() => {
 
     var adminAuthHeader = "Bearer " + identity.token;
     try {
-      return (0, _nodeFetch2.default)(userUrl, {
-        method: "DELETE",
-        headers: { Authorization: adminAuthHeader }
-      }).then(function (response) {
+      return (0, _nodeFetch2.default)(userUrl).then(function (response) {
         console.log("Deleted a user! 204!");
         console.log({ response });
         return { statusCode: 204 };
