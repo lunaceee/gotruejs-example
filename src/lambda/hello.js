@@ -4,14 +4,13 @@ exports.handler = async (event, context) => {
   const { identity, user } = context.clientContext;
   console.log({ identity, user });
   const userID = user.sub;
-  const usersUrl = `${identity.url}/admin/users`;
+  const usersUrl = `${identity.url}/admin/users?audience=smashing`;
   const adminAuthHeader = "Bearer " + identity.token;
 
   try {
     return fetch(usersUrl, {
       method: "GET",
-      audience: "smashing",
-      headers: { Authorization: adminAuthHeader }
+      headers: { Authorization: adminAuthHeader, "X-JWT-AUD": "smashing" }
     })
       .then(response => {
         console.log("Got a list of users! 204!");
