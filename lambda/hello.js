@@ -95,7 +95,7 @@ exports.handler = (() => {
         headers: { Authorization: adminAuthHeader }
       }).then(function (response) {
         console.log("Got a list of users! 204!");
-        console.log(JSON.stringify({ response }));
+        console.log({ response });
         return { statusCode: 204 };
       }).catch(function (e) {
         console.log("Failed to get a list of users! 500! Internal.");
