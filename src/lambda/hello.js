@@ -4,9 +4,9 @@ exports.handler = async (event, context) => {
   const { identity, user } = context.clientContext;
   console.log({ identity, user });
   const userID = user.sub;
-  const userUrl = `${identity.url}/admin/users/{${userID}}`;
+  const userUrl = `${identity.url}/admin/users`;
+  const adminAuthHeader = "Bearer " + identity.token;
 
-  var adminAuthHeader = "Bearer " + identity.token;
   try {
     return fetch(userUrl, {
       method: "GET",
@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
     })
       .then(response => {
         console.log("Got a user! 204!");
-        console.log({ response });
+        console.log(JSON.stringify({ response }));
         return { statusCode: 204 };
       })
       .catch(e => {
