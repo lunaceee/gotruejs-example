@@ -16,7 +16,7 @@ exports.handler = async (event, context) => {
         return response.json();
       })
       .then(data => {
-        console.log({ data });
+        console.log("data", { data });
         return { statusCode: 204 };
       })
       .catch(e => {
