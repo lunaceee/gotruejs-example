@@ -13,7 +13,7 @@ exports.handler = async (event, context) => {
     })
       .then(response => {
         console.log("Got a list of users!");
-        console.log(JSON.stringify(response));
+        console.log(JSON.stringify(response.headers));
         return { statusCode: 204 };
       })
       .catch(e => {
