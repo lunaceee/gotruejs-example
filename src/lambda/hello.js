@@ -6,13 +6,13 @@ exports.handler = async (event, context) => {
   const aud = identity.token.split(".")[1];
   console.log({ aud });
   const userID = user.sub;
-  const usersUrl = `${identity.url}/admin/users?audience=smashing`;
+  const usersUrl = `${identity.url}/admin/users?audience=${aud}`;
   const adminAuthHeader = "Bearer " + identity.token;
 
   try {
     return fetch(usersUrl, {
       method: "GET",
-      headers: { Authorization: adminAuthHeader, "X-JWT-AUD": "smashing" }
+      headers: { Authorization: adminAuthHeader, "X-JWT-AUD": aud }
     })
       .then(response => {
         console.log("Got a list of users! 204!");

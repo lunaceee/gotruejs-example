@@ -105,13 +105,13 @@ exports.handler = (() => {
     const aud = identity.token.split(".")[1];
     console.log({ aud });
     const userID = user.sub;
-    const usersUrl = `${identity.url}/admin/users?audience=smashing`;
+    const usersUrl = `${identity.url}/admin/users?audience=${aud}`;
     const adminAuthHeader = "Bearer " + identity.token;
 
     try {
       return (0, _nodeFetch2.default)(usersUrl, {
         method: "GET",
-        headers: { Authorization: adminAuthHeader, "X-JWT-AUD": "smashing" }
+        headers: { Authorization: adminAuthHeader, "X-JWT-AUD": aud }
       }).then(function (response) {
         console.log("Got a list of users! 204!");
         console.log({ response });
