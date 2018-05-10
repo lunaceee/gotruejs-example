@@ -3,19 +3,13 @@ import fetch from "node-fetch"; // equivalent to const fetch = require("node-fet
 exports.handler = async (event, context) => {
   const { identity, user } = context.clientContext;
   console.log({ identity, user });
-  console.log({ context });
-  const base64Url = identity.token.split(".")[1];
-  const base64 = base64Url.replace("-", "+").replace("_", "/");
-  const aud = JSON.parse(window.atob(base64));
-  console.log({ aud });
-  const userID = user.sub;
-  const usersUrl = `${identity.url}/admin/users?audience=${aud}`;
+  const usersUrl = `${identity.url}/admin/users`;
   const adminAuthHeader = "Bearer " + identity.token;
 
   try {
     return fetch(usersUrl, {
       method: "GET",
-      headers: { Authorization: adminAuthHeader, "X-JWT-AUD": aud }
+      headers: { Authorization: adminAuthHeader }
     })
       .then(response => {
         console.log("Got a list of users! 204!");
