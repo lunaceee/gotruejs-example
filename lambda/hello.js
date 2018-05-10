@@ -101,8 +101,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context) {
     const { identity, user } = context.clientContext;
-    console.log({ identity, user });
-    const usersUrl = `${identity.url}/admin/users`;
+    const userID = user.sub;
+    const userUrl = `${identity.url}/admin/users/{${userID}}`;
     const adminAuthHeader = "Bearer " + identity.token;
 
     try {
@@ -110,10 +110,10 @@ exports.handler = (() => {
         method: "GET",
         headers: { Authorization: adminAuthHeader }
       }).then(function (response) {
-        console.log("Got a list of users!");
         return response.json();
       }).then(function (data) {
         console.log("data", JSON.stringify(data));
+        console.log("Got user!");
         return { statusCode: 204 };
       }).catch(function (e) {
         console.log("Failed to get a list of users! 500! Internal.");

@@ -2,8 +2,8 @@ import fetch from "node-fetch"; // equivalent to const fetch = require("node-fet
 
 exports.handler = async (event, context) => {
   const { identity, user } = context.clientContext;
-  console.log({ identity, user });
-  const usersUrl = `${identity.url}/admin/users`;
+  const userID = user.sub;
+  const userUrl = `${identity.url}/admin/users/{${userID}}`;
   const adminAuthHeader = "Bearer " + identity.token;
 
   try {
@@ -12,11 +12,11 @@ exports.handler = async (event, context) => {
       headers: { Authorization: adminAuthHeader }
     })
       .then(response => {
-        console.log("Got a list of users!");
         return response.json();
       })
       .then(data => {
         console.log("data", JSON.stringify(data));
+        console.log("Got user!");
         return { statusCode: 204 };
       })
       .catch(e => {
