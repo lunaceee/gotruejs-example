@@ -113,7 +113,7 @@ exports.handler = (() => {
         console.log("Got a list of users!");
         return response.json();
       }).then(function (data) {
-        console.log("data", { data });
+        console.log("data", JSON.stringify(data));
         return { statusCode: 204 };
       }).catch(function (e) {
         console.log("Failed to get a list of users! 500! Internal.");
