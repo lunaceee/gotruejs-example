@@ -102,21 +102,21 @@ exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context) {
     const { identity, user } = context.clientContext;
     const userID = user.sub;
-    const userUrl = `${identity.url}/admin/users/{${userID}}`;
+    const userUrl = `${identity.url}/admin/users/${userID}`;
     const adminAuthHeader = "Bearer " + identity.token;
 
     try {
-      return (0, _nodeFetch2.default)(userUrl, {
-        method: "GET",
-        headers: { Authorization: adminAuthHeader }
+      (0, _nodeFetch2.default)(userUrl, {
+        method: "PUT",
+        headers: { Authorization: adminAuthHeader },
+        body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
       }).then(function (response) {
         return response.json();
       }).then(function (data) {
-        console.log("data", JSON.stringify(data));
-        console.log("Got user!");
+        console.log(JSON.Stringify(data));
         return { statusCode: 204 };
       }).catch(function (e) {
-        console.log("Failed to get a list of users! 500! Internal.");
+        console.log("GOT HERE! 500! Internal.");
         return {
           statusCode: 500,
           body: "Internal Server Error: " + e

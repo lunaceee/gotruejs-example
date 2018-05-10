@@ -3,24 +3,24 @@ import fetch from "node-fetch"; // equivalent to const fetch = require("node-fet
 exports.handler = async (event, context) => {
   const { identity, user } = context.clientContext;
   const userID = user.sub;
-  const userUrl = `${identity.url}/admin/users/{${userID}}`;
+  const userUrl = `${identity.url}/admin/users/${userID}`;
   const adminAuthHeader = "Bearer " + identity.token;
 
   try {
-    return fetch(userUrl, {
-      method: "GET",
-      headers: { Authorization: adminAuthHeader }
+    fetch(userUrl, {
+      method: "PUT",
+      headers: { Authorization: adminAuthHeader },
+      body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
     })
       .then(response => {
         return response.json();
       })
       .then(data => {
-        console.log("data", JSON.stringify(data));
-        console.log("Got user!");
+        console.log(JSON.Stringify(data));
         return { statusCode: 204 };
       })
       .catch(e => {
-        console.log("Failed to get a list of users! 500! Internal.");
+        console.log("GOT HERE! 500! Internal.");
         return {
           statusCode: 500,
           body: "Internal Server Error: " + e
