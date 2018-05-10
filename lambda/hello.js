@@ -60,17 +60,35 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+module.exports = require("stream");
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = require("http");
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = require("url");
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _nodeFetch = __webpack_require__(5);
+var _nodeFetch = __webpack_require__(4);
 
 var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
@@ -84,15 +102,16 @@ exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context) {
     const { identity, user } = context.clientContext;
     console.log({ identity, user });
+    const aud = identity.token.split(".")[1];
+    console.log({ aud });
     const userID = user.sub;
-    const usersUrl = `${identity.url}/admin/users`;
+    const usersUrl = `${identity.url}/admin/users?audience=smashing`;
     const adminAuthHeader = "Bearer " + identity.token;
 
     try {
       return (0, _nodeFetch2.default)(usersUrl, {
         method: "GET",
-        audience: "smashing",
-        headers: { Authorization: adminAuthHeader }
+        headers: { Authorization: adminAuthHeader, "X-JWT-AUD": "smashing" }
       }).then(function (response) {
         console.log("Got a list of users! 204!");
         console.log({ response });
@@ -116,26 +135,7 @@ exports.handler = (() => {
 })();
 
 /***/ }),
-/* 1 */,
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = require("stream");
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = require("http");
-
-/***/ }),
 /* 4 */
-/***/ (function(module, exports) {
-
-module.exports = require("url");
-
-/***/ }),
-/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -275,9 +275,9 @@ FetchError.prototype.name = 'FetchError';
  * Body interface provides common methods for Request and Response
  */
 
-const Stream = __webpack_require__(2);
+const Stream = __webpack_require__(0);
 
-var _require = __webpack_require__(2);
+var _require = __webpack_require__(0);
 
 const PassThrough = _require.PassThrough;
 
@@ -1183,7 +1183,7 @@ function createHeadersLenient(obj) {
  * Response class provides content decoding
  */
 
-var _require$1 = __webpack_require__(3);
+var _require$1 = __webpack_require__(1);
 
 const STATUS_CODES = _require$1.STATUS_CODES;
 
@@ -1279,7 +1279,7 @@ Object.defineProperty(Response.prototype, Symbol.toStringTag, {
  * All spec algorithm step numbers are based on https://fetch.spec.whatwg.org/commit-snapshots/ae716822cb3a61843226cd090eefc6589446c1d2/.
  */
 
-var _require$2 = __webpack_require__(4);
+var _require$2 = __webpack_require__(2);
 
 const format_url = _require$2.format;
 const parse_url = _require$2.parse;
@@ -1476,18 +1476,18 @@ function getNodeRequestOptions(request) {
  * All spec algorithm step numbers are based on https://fetch.spec.whatwg.org/commit-snapshots/ae716822cb3a61843226cd090eefc6589446c1d2/.
  */
 
-const http = __webpack_require__(3);
-const https = __webpack_require__(6);
+const http = __webpack_require__(1);
+const https = __webpack_require__(5);
 
-var _require$3 = __webpack_require__(2);
+var _require$3 = __webpack_require__(0);
 
 const PassThrough$1 = _require$3.PassThrough;
 
-var _require2 = __webpack_require__(4);
+var _require2 = __webpack_require__(2);
 
 const resolve_url = _require2.resolve;
 
-const zlib = __webpack_require__(7);
+const zlib = __webpack_require__(6);
 
 /**
  * Fetch function
@@ -1697,13 +1697,13 @@ fetch.Promise = global.Promise;
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("https");
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = require("zlib");

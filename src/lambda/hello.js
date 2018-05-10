@@ -3,6 +3,8 @@ import fetch from "node-fetch"; // equivalent to const fetch = require("node-fet
 exports.handler = async (event, context) => {
   const { identity, user } = context.clientContext;
   console.log({ identity, user });
+  const aud = identity.token.split(".")[1];
+  console.log({ aud });
   const userID = user.sub;
   const usersUrl = `${identity.url}/admin/users?audience=smashing`;
   const adminAuthHeader = "Bearer " + identity.token;
