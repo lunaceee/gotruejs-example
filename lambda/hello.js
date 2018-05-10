@@ -106,7 +106,7 @@ exports.handler = (() => {
     const adminAuthHeader = "Bearer " + identity.token;
 
     try {
-      return (0, _nodeFetch2.default)(usersUrl, {
+      return (0, _nodeFetch2.default)(userUrl, {
         method: "GET",
         headers: { Authorization: adminAuthHeader }
       }).then(function (response) {

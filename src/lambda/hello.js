@@ -7,7 +7,7 @@ exports.handler = async (event, context) => {
   const adminAuthHeader = "Bearer " + identity.token;
 
   try {
-    return fetch(usersUrl, {
+    return fetch(userUrl, {
       method: "GET",
       headers: { Authorization: adminAuthHeader }
     })
