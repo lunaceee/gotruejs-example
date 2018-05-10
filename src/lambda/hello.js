@@ -13,7 +13,9 @@ exports.handler = async (event, context) => {
     })
       .then(response => {
         console.log("Got a list of users!");
-        console.log(JSON.stringify(response.headers));
+        response.json().then(data => {
+          console.log({ data });
+        });
         return { statusCode: 204 };
       })
       .catch(e => {
