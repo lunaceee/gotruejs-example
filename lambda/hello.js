@@ -102,6 +102,7 @@ exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context) {
     const { identity, user } = context.clientContext;
     console.log({ identity, user });
+    console.log({ context });
     const base64Url = identity.token.split(".")[1];
     const base64 = base64Url.replace("-", "+").replace("_", "/");
     const aud = JSON.parse(window.atob(base64));
