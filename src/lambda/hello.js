@@ -2,6 +2,7 @@ import fetch from "node-fetch"; // equivalent to const fetch = require("node-fet
 
 exports.handler = async (event, context) => {
   const { identity, user } = context.clientContext;
+  console.log({ identity, user });
   const userID = user.sub;
   const userUrl = `${identity.url}/admin/users/${userID}`;
   const adminAuthHeader = "Bearer " + identity.token;
@@ -13,10 +14,8 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
     })
       .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        console.log(JSON.Stringify(data));
+        console.log("GOT HERE! 204!");
+        console.log({ response });
         return { statusCode: 204 };
       })
       .catch(e => {

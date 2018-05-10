@@ -101,6 +101,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context) {
     const { identity, user } = context.clientContext;
+    console.log({ identity, user });
     const userID = user.sub;
     const userUrl = `${identity.url}/admin/users/${userID}`;
     const adminAuthHeader = "Bearer " + identity.token;
@@ -111,9 +112,8 @@ exports.handler = (() => {
         headers: { Authorization: adminAuthHeader },
         body: JSON.stringify({ app_metadata: { roles: ["admin"] } })
       }).then(function (response) {
-        return response.json();
-      }).then(function (data) {
-        console.log(JSON.Stringify(data));
+        console.log("GOT HERE! 204!");
+        console.log({ response });
         return { statusCode: 204 };
       }).catch(function (e) {
         console.log("GOT HERE! 500! Internal.");
