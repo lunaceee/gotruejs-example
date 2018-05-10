@@ -110,7 +110,7 @@ exports.handler = (() => {
         method: "GET",
         headers: { Authorization: adminAuthHeader }
       }).then(function (response) {
-        console.log("Got a list of users! 204!");
+        console.log("Got a list of users!");
         console.log({ response });
         return { statusCode: 204 };
       }).catch(function (e) {
