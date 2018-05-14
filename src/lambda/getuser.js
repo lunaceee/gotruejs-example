@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
     });
     const resObj = await response.json();
     console.log("Got a user!");
-    console.log({ resObj });
+    console.log(JSON.stringify(resObj));
     return { statusCode: 204 };
   } catch (e) {
     console.log("GOT HERE! 500! outer");
