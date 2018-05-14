@@ -6,37 +6,53 @@ const auth = new GoTrue({
 });
 
 window.auth = auth;
-
-//test log in response object
-document
-  .querySelector("form[name='login_user']")
-  .addEventListener("submit", e => {
-    e.preventDefault();
-    const form = e.target;
-    const { email, password } = form.elements;
-    auth
-      .login(email.value, password.value)
-      .then(response => {
-        showMessage("Success! Response: " + JSON.stringify({ response }), form);
-      })
-      .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
-  });
-
-//test out password recovery method
-auth
-  .requestPasswordRecovery("luna+08@netlify.com")
-  .then(response => console.log("Recovery email sent", { response }))
-  .catch(error => console.log("Error sending recovery mail: %o", error));
-
-//test out recovery token method
-auth
-  .recover("30xx87Y2R3WdR6QHK-t4LQ")
-  .then(function(response) {
-    console.log("Logged in as %s", { response });
-  })
-  .catch(function(e) {
-    console.log(e);
-  });
+//
+// //signing up a user
+//
+// auth
+//   .signup("luna+14@netlify.com", "gotrue")
+//   .then(function(response) {
+//     console.log(JSON.stringify({ response }));
+//   })
+//   .catch(error => console.log("It's an error", error));
+//
+// //login methods
+// auth
+//   .login("luna+12@netlify.com", "gotrue")
+//   .then(function(response) {
+//     console.log(JSON.stringify(response));
+//   })
+//   .catch(function(e) {
+//     console.log(e);
+//   });
+//
+// //comfirm a user via access_token
+// auth
+//   .confirm("Iyo9xHvsGVbW-9A9v4sDmQ")
+//   .then(function(response) {
+//     console.log("Confirmation email sent", JSON.stringify({ response }));
+//   })
+//   .catch(function(e) {
+//     console.log(e);
+//   });
+//
+// //test out password recovery method
+// auth
+//   .requestPasswordRecovery("luna+identity@netlify.com")
+//   .then(response =>
+//     console.log("Recovery email sent", JSON.stringify({ response }))
+//   )
+//   .catch(error => console.log("Error sending recovery mail: %o", error));
+//
+// //test out recovery token method
+// auth
+//   .recover("6T8jMdpax0S5CFgHDMGCZg")
+//   .then(function(response) {
+//     console.log("Logged in as %s", JSON.stringify({ response }));
+//   })
+//   .catch(function(e) {
+//     console.log(e);
+//   });
 
 //sign up
 document.querySelector("form[name='signup']").addEventListener("submit", e => {
@@ -65,7 +81,20 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
         "Success! Response: " + JSON.stringify([response, myAuthHeader]),
         form
       );
-      fetch("/.netlify/functions/hello", {
+    })
+    .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
+});
+
+//Get a user via admin token
+
+const getUserBtn = document.querySelector(button[(name = "get-user")]);
+
+auth
+  .login("luna+01@netlify.com", "gotrue")
+  .then(response => {
+    const myAuthHeader = "Bearer " + response.token.access_token; //creates the bearer token
+    getUserBtn.onclick = () => {
+      fetch("/.netlify/functions/getuser", {
         headers: { Authorization: myAuthHeader },
         credentials: "include"
       })
@@ -73,9 +102,31 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
           console.log({ response });
         })
         .catch(error => console.error("Error:", error));
-    })
-    .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
-});
+    };
+  })
+  .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
+
+//Delete a user via admin token
+
+const deleteUserBtn = document.querySelector(button[(name = "delete-user")]);
+
+auth
+  .login("luna+01@netlify.com", "gotrue")
+  .then(response => {
+    const myAuthHeader = "Bearer " + response.token.access_token; //creates the bearer token
+    console.log({ myAuthHeader });
+    deleteUserBtn.onclick = () => {
+      fetch("/.netlify/functions/deleteuser", {
+        headers: { Authorization: myAuthHeader },
+        credentials: "include"
+      })
+        .then(response => {
+          console.log({ response });
+        })
+        .catch(error => console.error("Error:", error));
+    };
+  })
+  .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
 
 function showMessage(msg, el) {
   el.querySelector(".message").textContent = msg;

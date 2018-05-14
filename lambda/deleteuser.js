@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -83,58 +83,6 @@ module.exports = require("url");
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _nodeFetch = __webpack_require__(4);
-
-var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-// equivalent to const fetch = require("node-fetch").default;
-
-exports.handler = (() => {
-  var _ref = _asyncToGenerator(function* (event, context) {
-    const { identity, user } = context.clientContext;
-    const userID = user.sub;
-    const userUrl = `${identity.url}/admin/users/{${userID}}`;
-    const adminAuthHeader = "Bearer " + identity.token;
-
-    try {
-      return (0, _nodeFetch2.default)(userUrl, {
-        method: "DELETE",
-        headers: { Authorization: adminAuthHeader }
-      }).then(function (response) {
-        console.log("Deleted a user!");
-        return response.json();
-      }).then(function (data) {
-        console.log({ data });
-        return { statusCode: 204 };
-      }).catch(function (e) {
-        console.log("Failed to delete a user! 500! Internal.");
-        return {
-          statusCode: 500,
-          body: "Internal Server Error: " + e
-        };
-      });
-    } catch (e) {
-      console.log("GOT HERE! 500! outer");
-      return { statusCode: 500, body: "Internal Server Error: " + e };
-    }
-  });
-
-  return function (_x, _x2) {
-    return _ref.apply(this, arguments);
-  };
-})();
-
-/***/ }),
-/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1476,7 +1424,7 @@ function getNodeRequestOptions(request) {
  */
 
 const http = __webpack_require__(1);
-const https = __webpack_require__(5);
+const https = __webpack_require__(4);
 
 var _require$3 = __webpack_require__(0);
 
@@ -1486,7 +1434,7 @@ var _require2 = __webpack_require__(2);
 
 const resolve_url = _require2.resolve;
 
-const zlib = __webpack_require__(6);
+const zlib = __webpack_require__(5);
 
 /**
  * Fetch function
@@ -1696,16 +1644,60 @@ fetch.Promise = global.Promise;
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = require("https");
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("zlib");
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _nodeFetch = __webpack_require__(3);
+
+var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+// equivalent to const fetch = require("node-fetch").default;
+
+exports.handler = (() => {
+  var _ref = _asyncToGenerator(function* (event, context) {
+    const { identity, user } = context.clientContext;
+    const userID = user.sub;
+    const userUrl = `${identity.url}/admin/users/{${userID}}`;
+    const adminAuthHeader = "Bearer " + identity.token;
+
+    try {
+      const response = yield (0, _nodeFetch2.default)(userUrl, {
+        method: "DELETE",
+        headers: { Authorization: adminAuthHeader }
+      });
+      const resObj = yield response.json();
+      console.log("Deleted a user!");
+      console.log({ resObj });
+      return { statusCode: 204 };
+    } catch (e) {
+      console.log("GOT HERE! 500! outer");
+      return { statusCode: 500, body: "Internal Server Error: " + e };
+    }
+  });
+
+  return function (_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+})();
 
 /***/ })
 /******/ ])));
