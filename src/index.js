@@ -87,7 +87,7 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
 
 //Get a user via admin token
 
-const getUserBtn = document.querySelector(button[(name = "get-user")]);
+const getUserBtn = document.querySelector(".get-user");
 
 auth
   .login("luna+01@netlify.com", "gotrue")
@@ -99,7 +99,7 @@ auth
         credentials: "include"
       })
         .then(response => {
-          console.log({ response });
+          showMessage("Got a user! Response: " + JSON.stringify(response));
         })
         .catch(error => console.error("Error:", error));
     };
@@ -121,7 +121,7 @@ auth
         credentials: "include"
       })
         .then(response => {
-          console.log({ response });
+          console.log(JSON.stringify({ response }));
         })
         .catch(error => console.error("Error:", error));
     };
