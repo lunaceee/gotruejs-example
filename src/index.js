@@ -77,10 +77,15 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
     .then(response => {
       const myAuthHeader = "Bearer " + response.token.access_token; //creates the bearer token
       console.log({ myAuthHeader });
-      showMessage(
-        "Success! Response: " + JSON.stringify([response, myAuthHeader]),
-        form
-      );
+      showMessage("Success! Response: " + JSON.stringify(response), form);
+      fetch("/.netlify/functions/getuser", {
+        headers: { Authorization: myAuthHeader },
+        credentials: "include"
+      })
+        .then(response => {
+          console.log({ response });
+        })
+        .catch(error => console.error("Error:", error));
     })
     .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
 });
@@ -104,29 +109,29 @@ auth
         .catch(error => console.error("Error:", error));
     };
   })
-  .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
+  .catch(error => showMessage("Failed :( " + JSON.stringify(error)));
 
-//Delete a user via admin token
-
-const deleteUserBtn = document.querySelector(button[(name = "delete-user")]);
-
-auth
-  .login("luna+01@netlify.com", "gotrue")
-  .then(response => {
-    const myAuthHeader = "Bearer " + response.token.access_token; //creates the bearer token
-    console.log({ myAuthHeader });
-    deleteUserBtn.onclick = () => {
-      fetch("/.netlify/functions/deleteuser", {
-        headers: { Authorization: myAuthHeader },
-        credentials: "include"
-      })
-        .then(response => {
-          console.log(JSON.stringify({ response }));
-        })
-        .catch(error => console.error("Error:", error));
-    };
-  })
-  .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
+// //Delete a user via admin token
+//
+// const deleteUserBtn = document.querySelector("delete-user");
+//
+// auth
+//   .login("luna+01@netlify.com", "gotrue")
+//   .then(response => {
+//     const myAuthHeader = "Bearer " + response.token.access_token; //creates the bearer token
+//     console.log({ myAuthHeader });
+//     deleteUserBtn.onclick = () => {
+//       fetch("/.netlify/functions/deleteuser", {
+//         headers: { Authorization: myAuthHeader },
+//         credentials: "include"
+//       })
+//         .then(response => {
+//           console.log(JSON.stringify({ response }));
+//         })
+//         .catch(error => console.error("Error:", error));
+//     };
+//   })
+//   .catch(error => showMessage("Failed :( " + JSON.stringify(error)));
 
 function showMessage(msg, el) {
   el.querySelector(".message").textContent = msg;
