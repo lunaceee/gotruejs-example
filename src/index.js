@@ -76,14 +76,13 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
     .login(email.value, password.value)
     .then(response => {
       const myAuthHeader = "Bearer " + response.token.access_token; //creates the bearer token
-      console.log({ myAuthHeader });
       showMessage("Success! Response: " + JSON.stringify(response), form);
       fetch("/.netlify/functions/getuser", {
         headers: { Authorization: myAuthHeader },
         credentials: "include"
       })
         .then(response => {
-          console.log({ response });
+          showMessage("Got a user! Response: " + JSON.stringify(response));
         })
         .catch(error => console.error("Error:", error));
     })
