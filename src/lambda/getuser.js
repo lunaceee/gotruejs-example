@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
     console.log(JSON.stringify(resObj));
     return {
       statusCode: 204,
-      body: JSON.stringify(resObj)
+      body: "hello"
     };
   } catch (e) {
     console.log("GOT HERE! 500! outer");
