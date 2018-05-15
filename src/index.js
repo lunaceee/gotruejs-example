@@ -75,7 +75,6 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
   auth
     .login(email.value, password.value)
     .then(response => {
-      const myAuthHeader = "Bearer " + response.token.access_token; //creates the bearer token
       showMessage(
         "Log in successful! Response: " + JSON.stringify(response),
         form
@@ -85,6 +84,50 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
       showMessage("Failed to log in :( " + JSON.stringify(error), form)
     );
 });
+
+//get current user
+document
+  .querySelector("form[name='get_current_user']")
+  .addEventListener("submit", e => {
+    e.preventDefault();
+    const form = e.target;
+    const { email, password } = form.elements;
+    auth
+      .login(email.value, password.value)
+      .then(response => {
+        showMessage(
+          "Got current user! Response: " + JSON.stringify(auth.currentUser()),
+          form
+        );
+      })
+      .catch(error =>
+        showMessage("Failed to log in :( " + JSON.stringify(error), form)
+      );
+  });
+
+//Update users
+document
+  .querySelector("form[name='update_user']")
+  .addEventListener("submit", e => {
+    e.preventDefault();
+    const form = e.target;
+    const { email, password } = form.elements;
+    auth
+      .login(email.value, password.value)
+      .then(() => {
+        const user = auth.currentUser();
+        user
+          .update({ email: "example@example.com", password: "password" })
+          .then(user => console.log("Updated user %s", user))
+          .catch(error => {
+            console.log("Failed to update user: %o", error);
+            throw error;
+          });
+      })
+      .catch(error =>
+        showMessage("Failed to log in :( " + JSON.stringify(error), form)
+      );
+  });
 
 //Get a user via admin token
 
@@ -102,16 +145,14 @@ auth
         credentials: "include"
       })
         .then(response => {
-          console.log("line 106");
           return response.json();
         })
         .then(data => {
-          console.log("line 110");
+          console.log("Got a user");
           showMessage(
             "Got a user! Response: " + JSON.stringify(data),
             getUserDiv
           );
-          console.log("line 112");
         })
         .catch(error => console.error("Error:", error));
     };
@@ -141,9 +182,7 @@ auth
 //   .catch(error => showMessage("Failed :( " + JSON.stringify(error)));
 
 function showMessage(msg, el) {
-  el.querySelector(
-    ".message"
-  ).innerHTML = `<div class="card col-sm-3"><div class="card-body">${msg}</div></div>`;
+  el.querySelector(".message").innerHTML = msg;
 }
 
 function clearPage() {

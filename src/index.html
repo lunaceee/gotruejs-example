@@ -55,18 +55,12 @@
               <a class="nav-link" href="#sign-up">Sign up</a>
               <a class="nav-link" href="#confirm">Confirmation</a>
               <a class="nav-link" href="#log-in">Log in</a>
-              <a class="nav-link" href="#">Request Password Recovery</a>
-              <a class="nav-link" href="#">Recover</a>
-              <a class="nav-link" href="#">Get current user</a>
-              <a class="nav-link" href="#">Update user</a>
-              <a class="nav-link" href="#">Get JWT token</a>
-              <a class="nav-link" href="#">Log out</a>
-              <h4><a href="#admininistration">Admininistration</a></h4>
-              <a class="nav-link" href="#">Get user</a>
-              <a class="nav-link" href="#">Update user</a>
-              <a class="nav-link" href="#">Create user</a>
-              <a class="nav-link" href="#">Delete user</a>
-              <a class="nav-link" href="#">Get the list of all users</a>
+              <a class="nav-link" href="#recovery-pw-request">Request Password Recovery</a>
+              <a class="nav-link" href="#recoverypw">Recover</a>
+              <a class="nav-link" href="#current-user">Get current user</a>
+              <a class="nav-link" href="#update-user">Update user</a>
+              <a class="nav-link" href="#get-jwt">Get JWT token</a>
+              <a class="nav-link" href="#log-out">Log out</a>
           </nav>
         </div>
         <div class="col-lg-8">
@@ -76,7 +70,7 @@
                   <h1 id="authentication">Authentication</h1>
               </div>
               <!-- sign up -->
-              <div class="tab-content" id="sign-up">
+              <div class="" id="sign-up">
                 <div class="row">
                   <h2>
                       Sign up
@@ -126,24 +120,25 @@ auth.signup(email, password)
                   </div>
                   <br>
                   <div class="row">
-                    <div class="col-lg-12">
-                      <form name="signup">
-                        <div class="form-group">
-                          <p>
-                            <label>Email
-                            <input class="form-control" type="email" name="email" required placeholder="Enter email"/></label>
-                          </p>
-                          <p>
-                            <label>Password
-                            <input class="form-control" type="password" name="password" required placeholder="Password"/></label>
-                          </p>
-                          <button class="btn btn-primary" type="submit">Sign me up!</button>
-                          <div class="message">
-                          </div>
+                      <div class="card">
+                        <div class="card-body">
+                          <form name="signup">
+                            <div class="form-group">
+                              <p>
+                                <label>Email
+                                <input class="form-control" type="email" name="email" required placeholder="Enter email"/></label>
+                              </p>
+                              <p>
+                                <label>Password
+                                <input class="form-control" type="password" name="password" required placeholder="Password"/></label>
+                              </p>
+                              <button class="btn btn-primary" type="submit">Sign me up!</button>
+                              <div class="message">
+                              </div>
+                            </div>
+                          </form>
                         </div>
-                      </form>
-                    </div>
-
+                      </div>
                   </div>
               </div>
               <br>
@@ -317,192 +312,427 @@ auth
                   <h4>Try it out!</h4>
                 </div>
                 <div class="row" id="log-in">
-                    <form name="login" >
-                      <div class="form-group">
-                        <p>
-                          <label>Email<br/>
-                          <input class="form-control" type="email" name="email" required placeholder="Email address"/></label>
-                        </p>
-                        <p>
-                          <label>Password<br/>
-                          <input class="form-control" type="password" name="password" required placeholder="Password"/></label>
-                        </p>
-                        <button class="btn btn-primary" type="submit">Log in</button>
-                        <div class="message"></div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <!-- password recovery request -->
-              <div class="">
-                <h2>
-                  <a class="link" data-toggle="collapse" href="#request-pw-recovery" aria-expanded="false" aria-controls="request-pw-recovery">
-                    Request password recovery email
-                  </a>
-                </h2>
-                <p>This function sends a request to GoTrue to trigger a password recovery email to the specified email address</p>
-                <div class="row collapse" id="request-pw-recovery">
-                  <div class="col-sm">
-                    <button class="btn btn-default" type="button" name="button">
-                      Forgot password!
-                    </button>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Request</h3>
-                    <code>
-                    </code>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Response</h3>
-                    <code>
-                    </code>
-                  </div>
-                </div>
-              </div>
-              <!-- password recovery -->
-              <div class="">
-                <h2>
-                  <a class="link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="">
-                    Sign in via link
-                  </a>
-                </h2>
-                <p>This function recovers a user account via a recovery token</p>
-                <div class="row collapse" id="">
-                  <div class="col-sm">
-                    <div class="col-sm">
-                      <button class="btn btn-default" type="button" name="button">
-                        hahaha
-                      </button>
+                  <div class="card">
+                    <div class="card-body">
+                      <form name="login" >
+                        <div class="form-group">
+                          <p>
+                            <label>Email<br/>
+                            <input class="form-control" type="email" name="email" required placeholder="Email address"/></label>
+                          </p>
+                          <p>
+                            <label>Password<br/>
+                            <input class="form-control" type="password" name="password" required placeholder="Password"/></label>
+                          </p>
+                          <button class="btn btn-primary" type="submit">Log in</button>
+                          <div class="message"></div>
+                        </div>
+                      </form>
                     </div>
                   </div>
-                  <div class="col-sm">
-                    <h3>Request</h3>
-                    <code>
-                    </code>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Response</h3>
-                    <code>
-                    </code>
-                  </div>
-                </div>
-              </div>
-              <!-- get current user -->
-              <div class="">
-                <h2>
-                  <a class="link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="">
-                    bla bla bla
-                  </a>
-                </h2>
-                <p></p>
-                <div class="row collapse" id="">
-                  <div class="col-sm">
-                    <button class="btn btn-default" type="button" name="button">
-                      hahaha
-                    </button>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Request</h3>
-                    <code>
-                    </code>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Response</h3>
-                    <code>
-                    </code>
-                  </div>
-                </div>
-              </div>
-              <!-- update user -->
-              <div class="">
-                <h2>
-                  <a class="link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="">
-                    bla bla bla
-                  </a>
-                </h2>
-                <p></p>
-                <div class="row collapse" id="">
-                  <div class="col-sm">
-                    <button class="btn btn-default" type="button" name="button">
-                      hahaha
-                    </button>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Request</h3>
-                    <code>
-                    </code>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Response</h3>
-                    <code>
-                    </code>
-                  </div>
-                </div>
-              </div>
-              <!-- get jwt token -->
-              <div class="">
-                <h2>
-                  <a class="link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="">
-                    bla bla bla
-                  </a>
-                </h2>
-                <p></p>
-                <div class="row collapse" id="">
-                  <div class="col-sm">
-                    <button class="btn btn-default" type="button" name="button">
-                      hahaha
-                    </button>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Request</h3>
-                    <code>
-                    </code>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Response</h3>
-                    <code>
-                    </code>
-                  </div>
-                </div>
-              </div>
-              <!-- logout -->
-              <div class="">
-                <h2>
-                  <a class="link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="">
-                    bla bla bla
-                  </a>
-                </h2>
-                <p></p>
-                <div class="row collapse" id="">
-                  <div class="col-sm">
-                    <button class="btn btn-default" type="button" name="button">
-                      hahaha
-                    </button>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Request</h3>
-                    <code>
-                    </code>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Response</h3>
-                    <code>
-                    </code>
-                  </div>
-                </div>
-              </div>
-              <h1>Admininistration</h1>
-              <div id="get-user-div">
-                <h2>Get user</h2>
-                <button class="get-user btn btn-default" type="button" name="get-user">
-                  Give me a user!
-                </button>
-                <div class="message"></div>
-              </div>
 
-              <h2>Delete user</h2>
-              <button class="delete-user" type="button" name="delete-user">Delete user</button>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <!-- password recovery request -->
+              <div class="" id="request-pw-recovery">
+                <div class="row">
+                  <h2>
+                    <a class="link" href="#request-pw-recovery">
+                      Request password recovery email
+                    </a>
+                  </h2>
+                  <p>This function sends a request to GoTrue to trigger a password recovery email to the specified email address</p>
+                </div>
+                  <div class="row">
+                    <h3>Example code</h3>
+                  </div>
+                  <div class="row">
+                    <div class="code-block">
+                      <pre>
+                        <code>
+auth
+  .requestPasswordRecovery(email)
+  .then(response => console.log("Recovery email sent", { response }))
+  .catch(error => console.log("Error sending recovery mail: %o", error));
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                    <div class="row">
+                      <h3>Example response</h3>
+                    </div>
+                    <div class="row">
+                      <div class="code-block">
+                        <pre>
+                          <code>
+{}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+
+                      <!-- <div class="row">
+                        <button class="btn btn-default" type="button" name="button">
+                          Forgot password!
+                        </button>
+                      </div> -->
+                      <br>
+                </div>
+              <!-- password recovery -->
+              <div class="" id="request-pw">
+                <div class="row">
+                  <h2>
+                    <a class="link" href="#request-pw">
+                      Account recovery
+                    </a>
+                  </h2>
+                </div>
+                  <div class="row">
+                    <p>This function recovers a user account via a recovery token.</p>
+                  </div>
+                  <div class="row">
+                    <h3>Example code</h3>
+                  </div>
+                  <div class="row">
+                    <div class="code-block">
+                      <pre>
+                        <code>
+auth
+  .recover(token)
+  .then(response =>
+    console.log("Logged in as %s", JSON.stringify({ response }))
+  )
+  .catch(error => console.log("Failed to verify recover token: %o", error));
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                    <div class="row">
+                      <h3>Example response</h3>
+                    </div>
+                    <div class="row">
+                      <div class="code-block">
+                        <pre>
+                          <code>
+{
+	"response": {
+		"api": {
+			"apiURL": "https://example.netlify.com/.netlify/identity",
+			"_sameOrigin": true,
+			"defaultHeaders": {}
+		},
+		"url": "https://example.netlify.com/.netlify/identity",
+		"token": {
+			"access_token": "example-jwt-token",
+			"token_type": "bearer",
+			"expires_in": 3600,
+			"refresh_token": "example-refresh-token",
+			"expires_at": 1526107729000
+		},
+		"id": "example-id",
+		"aud": "",
+		"role": "",
+		"email": "example@netlify.com",
+		"confirmed_at": "2018-05-12T05:48:49Z",
+		"invited_at": "2018-05-04T23:40:00Z",
+		"recovery_sent_at": "2018-05-12T05:48:13Z",
+		"app_metadata": {
+			"provider": "email"
+		},
+		"user_metadata": {},
+		"created_at": "2018-05-04T23:40:00Z",
+		"updated_at": "2018-05-04T23:40:00Z"
+	}
+}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <h4>Try it out!</h4>
+                    </div>
+                    <div class="row">
+                      <button class="btn btn-default" type="button" name="button">
+                        Take me back to my account!
+                      </button>
+                    </div>
+                </div>
+                <br>
+              <!-- get current user -->
+              <div class="" id="current-user">
+                <div class="row">
+                  <h2>
+                    <a class="link">
+                      Get current user
+                    </a>
+                  </h2>
+                </div>
+                  <div class="row">
+                    <p>This function returns the current user object when a user is logged in.</p>
+                  </div>
+                  <div class="row">
+                    <h3>Example code</h3>
+                  </div>
+                  <div class="row">
+                    <div class="code-block">
+                      <pre>
+                        <code>
+const user = auth.currentUser();
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                    <div class="row">
+                      <h3>Example response</h3>
+                    </div>
+                    <div class="row">
+                      <div class="code-block">
+                        <pre>
+                          <code>
+{
+  "api": {
+    "apiURL": "https://example.netlify.com/.netlify/identity",
+    "_sameOrigin": true,
+    "defaultHeaders": {}
+  },
+  "url": "https://example.netlify.com/.netlify/identity",
+  "token": {
+    "access_token": "example-token",
+    "token_type": "bearer",
+    "expires_in": 3600,
+    "refresh_token": "v4w7HfB4xfeKW9m8tg",
+    "expires_at": 1525214326000
+  },
+  "id": "example-id",
+  "aud": "",
+  "role": "",
+  "email": "example@example.com",
+  "confirmed_at": "2018-05-01T19:21:00Z",
+  "app_metadata": {
+    "provider": "email"
+  },
+  "user_metadata": {},
+  "created_at": "2018-05-01T19:21:00Z",
+  "updated_at": "2018-05-01T19:21:00Z"
+}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <h4>Try it out!</h4>
+                    </div>
+                    <div class="row">
+                      <div class="card">
+                        <div class="card-body">
+                          <form name="get_current_user">
+                            <div class="form-group">
+                              <p>
+                                <label>Email
+                                <input class="form-control" type="email" name="email" required placeholder="Enter email"/></label>
+                              </p>
+                              <p>
+                                <label>Password
+                                <input class="form-control" type="password" name="password" required placeholder="Password"/></label>
+                              </p>
+                              <button class="btn btn-primary" type="submit">Get current user!</button>
+                              <div class="message">
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <br>
+              <!-- update user -->
+              <div class="" id="update-user">
+                <div class="row">
+                  <h2>
+                    <a class="link">
+                      Update user
+                    </a>
+                  </h2>
+                </div>
+                  <div class="row">
+                    <p>This function updates a user object with specified attributes.</p>
+                  </div>
+                  <div class="row">
+                    <h3>Example code</h3>
+                  </div>
+                  <div class="row">
+                    <div class="code-block">
+                      <pre>
+                        <code>
+const user = auth.currentUser();
+
+user
+  .update({ email: "example@example.com", password: "password" })
+  .then(user => console.log("Updated user %s", user))
+  .catch(error => {
+    console.log("Failed to update user: %o", error);
+    throw error;
+  });
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                    <div class="row">
+                      <h3>Example response</h3>
+                    </div>
+                    <div class="row">
+                      <div class="code-block">
+                        <pre>
+                          <code>
+{
+  "api": {
+    "apiURL": "https://example.netlify.com/.netlify/identity",
+    "_sameOrigin": true,
+    "defaultHeaders": {}
+  },
+  "url": "https://example.netlify.com/.netlify/identity",
+  "token": {
+    "access_token": "example-token",
+    "token_type": "bearer",
+    "expires_in": 3600,
+    "refresh_token": "dSkuYfmkph-mxUVtOA5k_Q",
+    "expires_at": 1525215471000
+  },
+  "id": "example-id",
+  "aud": "",
+  "role": "",
+  "email": "example@example.com",
+  "confirmed_at": "2018-05-01T19:21:00Z",
+  "app_metadata": {
+    "provider": "email"
+  },
+  "user_metadata": {},
+  "created_at": "2018-05-01T19:21:00Z",
+  "updated_at": "2018-05-01T22:04:07.923944421Z",
+  "new_email": "new-example@example.com",
+  "email_change_sent_at": "2018-05-01T22:04:07.49197052Z"
+}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <h4>Try it out!</h4>
+                    </div>
+                    <div class="row">
+                      <div class="card">
+                        <div class="card-body">
+                          <form name="update_user">
+                            <div class="form-group">
+                              <p>
+                                <label>Email
+                                <input class="form-control" type="email" name="email" required placeholder="Enter email"/></label>
+                              </p>
+                              <p>
+                                <label>Password
+                                <input class="form-control" type="password" name="password" required placeholder="Password"/></label>
+                              </p>
+                              <button class="btn btn-primary" type="submit">Update user!</button>
+                              <div class="message">
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <br>
+              <!-- get jwt token -->
+              <div class="" id="get-jwt-token">
+                <div class="row">
+                  <h2>
+                    <a class="link">
+                      Get JWT token
+                    </a>
+                  </h2>
+                </div>
+                  <div class="row">
+                    <p>description</p>
+                  </div>
+                  <div class="row">
+                    <h3>Example code</h3>
+                  </div>
+                  <div class="row">
+                    <div class="code-block">
+                      <pre>
+                        <code>
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                    <div class="row">
+                      <h3>Example response</h3>
+                    </div>
+                    <div class="row">
+                      <div class="code-block">
+                        <pre>
+                          <code>
+
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <h4>Try it out!</h4>
+                    </div>
+                    <div class="row">
+                      <form class="" action="index.html" method="post">
+
+                      </form>
+                    </div>
+                </div>
+                <br>
+              <!-- logout -->
+              <div class="" id="log-out">
+                <div class="row">
+                  <h2>
+                    <a class="link">
+                      Log out
+                    </a>
+                  </h2>
+                </div>
+                  <div class="row">
+                    <p>description</p>
+                  </div>
+                  <div class="row">
+                    <h3>Example code</h3>
+                  </div>
+                  <div class="row">
+                    <div class="code-block">
+                      <pre>
+                        <code>
+                        </code>
+                      </pre>
+                    </div>
+                  </div>
+                    <div class="row">
+                      <h3>Example response</h3>
+                    </div>
+                    <div class="row">
+                      <div class="code-block">
+                        <pre>
+                          <code>
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <h4>Try it out!</h4>
+                    </div>
+                    <div class="row">
+                      <form class="" action="index.html" method="post">
+
+                      </form>
+                    </div>
+                </div>
+                <br>
             </article>
         </div>
       </div>
