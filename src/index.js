@@ -76,9 +76,14 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
     .login(email.value, password.value)
     .then(response => {
       const myAuthHeader = "Bearer " + response.token.access_token; //creates the bearer token
-      showMessage("Success! Response: " + JSON.stringify(response), form);
+      showMessage(
+        "Log in successful! Response: " + JSON.stringify(response),
+        form
+      );
     })
-    .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
+    .catch(error =>
+      showMessage("Failed to log in :( " + JSON.stringify(error), form)
+    );
 });
 
 //Get a user via admin token
@@ -136,7 +141,9 @@ auth
 //   .catch(error => showMessage("Failed :( " + JSON.stringify(error)));
 
 function showMessage(msg, el) {
-  el.querySelector(".message").textContent = msg;
+  el.querySelector(
+    ".message"
+  ).innerHTML = `<div class="card col-sm-3"><div class="card-body">${msg}</div></div>`;
 }
 
 function clearPage() {

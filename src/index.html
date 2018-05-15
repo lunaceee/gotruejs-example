@@ -53,7 +53,7 @@
               <h4><a href="#authentication">Authentication</a></h4>
               <a class="nav-link" href="#sign-up">Sign up</a>
               <a class="nav-link" href="#confirm">Confirmation</a>
-              <a class="nav-link" href="#">Log in</a>
+              <a class="nav-link" href="#log-in">Log in</a>
               <a class="nav-link" href="#">Request Password Recovery</a>
               <a class="nav-link" href="#">Recover</a>
               <a class="nav-link" href="#">Get current user</a>
@@ -170,9 +170,17 @@ auth.signup(email, password)
                   </p>
                   <pre>
                     <code>
-{curl -I "link from confirmation email"
-...
-Location: "https://example.netlify.com/#confirmation_token=example-token"
+$ curl -I https://mandrillapp.com/track/click/30002868/example.netlify.com?p=example-token
+HTTP/1.1 302 Moved Temporarily
+Server: nginx/1.12.2
+Date: Tue, 15 May 2018 21:19:13 GMT
+Content-Type: text/html; charset=utf-8
+Set-Cookie: PHPSESSID=77c421bf85fa412e5f994f28a6b30956; expires=Wed, 16-May-2018 07:19:13 GMT; path=/; secure; HttpOnly
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Set-Cookie: PHPSESSID=77c421bf85fa412e5f994f28a6b30956; expires=Wed, 16-May-2018 07:19:13 GMT; path=/; secure; httponly
+Location: https://example.netlify.com/#confirmation_token=Iyo9xHvsGVbW-9A9v4sDmQ
                     </code>
                   </pre>
 
@@ -217,14 +225,14 @@ Location: "https://example.netlify.com/#confirmation_token=example-token"
                   <figure>
                     <pre>
                       <code>
-                        auth
-                          .confirm(token)
-                          .then(function(response) {
-                            console.log("Account confirmed!Welcome to the party!", JSON.stringify({ response }));
-                          })
-                          .catch(function(e) {
-                            console.log(e);
-                          });
+auth
+  .confirm(token)
+  .then(function(response) {
+    console.log("Account confirmed!Welcome to the party!", JSON.stringify({ response }));
+  })
+  .catch(function(e) {
+    console.log(e);
+  });
                       </code>
                     </pre>
                   </figure>
@@ -237,16 +245,16 @@ Location: "https://example.netlify.com/#confirmation_token=example-token"
 {
 	"response": {
 		"api": {
-			"apiURL": "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity",
+			"apiURL": "https://example.netlify.com/.netlify/identity",
 			"_sameOrigin": true,
 			"defaultHeaders": {}
 		},
-		"url": "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity",
+		"url": "https://example.netlify.com/.netlify/identity",
 		"token": {
 			"access_token": "example-jwt-token",
 			"token_type": "bearer",
 			"expires_in": 3600,
-			"refresh_token": "rRbzn5kppCr09Fd5FX9uxg",
+			"refresh_token": "example-refresh-token",
 			"expires_at": 1526110512000
 		},
 		"id": "example-id",
@@ -274,64 +282,87 @@ Location: "https://example.netlify.com/#confirmation_token=example-token"
 
 
               <!-- log in -->
-              <div class="">
-                <h2>
-                  <a class="link" data-toggle="collapse" href="#log-in" aria-expanded="false" aria-controls="log-in">
-                    Log in
-                  </a>
-                </h2>
-                <p>Handles user login via the specified email and password</p>
-                <div class="row collapse" id="log-in">
-                  <div class="col-sm">
-                    <form name="login">
-                      <p>
-                        <label>Email<br/><input type="email" name="email" required/></label>
-                      </p>
-                      <p>
-                        <label>Password<br/><input type="password" name="password" required/></label>
-                      </p>
-                      <div class="message"></div>
-                      <button class="btn btn-primary" type="submit">Log in</button>
+              <div class="" id="log-in">
+                <div class="row">
+                  <h2>
+                    <a>
+                      Log in
+                    </a>
+                  </h2>
+                </div>
+                <div class="row">
+                  <p>Handles user login via the specified email and password</p>
+                </div>
+                <div class="row">
+                  <h3>Example code</h3>
+                  <figure>
+                    <pre>
+                      <code>
+auth
+  .login(email.value, password.value)
+  .then(response => {
+    showMessage("Success! Response: " + JSON.stringify({ response }), form);
+  })
+  .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
+                      </code>
+                    </pre>
+                  </figure>
+                </div>
+                <div class="row">
+                  <h3>Example response</h3>
+                  <figure>
+                    <pre>
+                      <code>
+{
+	"response": {
+		"api": {
+			"apiURL": "https://example.netlify.com/.netlify/identity",
+			"_sameOrigin": true,
+			"defaultHeaders": {}
+		},
+		"url": "https://example.netlify.com/.netlify/identity",
+		"token": {
+			"access_token": "example-jwt-token",
+			"token_type": "bearer",
+			"expires_in": 3600,
+			"refresh_token": "example-refresh-token",
+			"expires_at": 1526062471000
+		},
+		"id": "example-id",
+		"aud": "",
+		"role": "",
+		"email": "example@netlify.com",
+		"confirmed_at": "2018-05-04T23:57:17Z",
+		"app_metadata": {
+			"provider": "email"
+		},
+		"user_metadata": {},
+		"created_at": "2018-05-04T23:57:17Z",
+		"updated_at": "2018-05-04T23:57:17Z"
+	}
+}
+                      </code>
+                    </pre>
+                  </figure>
+                </div>
+                <div class="row">
+                  <h4>Try it out!</h4>
+                </div>
+                <div class="row" id="log-in">
+                    <form name="login" >
+                      <div class="form-group">
+                        <p>
+                          <label>Email<br/>
+                          <input class="form-control" type="email" name="email" required placeholder="Email address"/></label>
+                        </p>
+                        <p>
+                          <label>Password<br/>
+                          <input class="form-control" type="password" name="password" required placeholder="Password"/></label>
+                        </p>
+                        <button class="btn btn-primary" type="submit">Log in</button>
+                        <div class="message"></div>
+                      </div>
                     </form>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Request</h3>
-                    <code>
-                      auth.login(email.value, password.value).then(response => {showMessage("Success! Response: " + JSON.stringify({ response }), form);}).catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
-                    </code>
-                  </div>
-                  <div class="col-sm">
-                    <h3>Response</h3>
-                    <code>
-                      {
-                      	"response": {
-                      		"api": {
-                      			"apiURL": "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity",
-                      			"_sameOrigin": true,
-                      			"defaultHeaders": {}
-                      		},
-                      		"url": "https://example.netlify.com/.netlify/identity",
-                      		"token": {
-                      			"access_token": "example-token",
-                      			"token_type": "bearer",
-                      			"expires_in": 3600,
-                      			"refresh_token": "S6gbTG9u9Yn51zvjP9pgWA",
-                      			"expires_at": 1526062471000
-                      		},
-                      		"id": "example-id",
-                      		"aud": "",
-                      		"role": "",
-                      		"email": "example@netlify.com",
-                      		"confirmed_at": "2018-05-04T23:57:17Z",
-                      		"app_metadata": {
-                      			"provider": "email"
-                      		},
-                      		"user_metadata": {},
-                      		"created_at": "2018-05-04T23:57:17Z",
-                      		"updated_at": "2018-05-04T23:57:17Z"
-                      	}
-                      }
-                    </code>
                   </div>
                 </div>
               </div>
