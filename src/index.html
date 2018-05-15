@@ -2,42 +2,366 @@
 <html lang="en">
   <head>
     <title>GoTrue JS Examples</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+    <style media="screen">
+      body {
+        margin-top: 48px;
+        font-family: 'Titillium Web', sans-serif;
+      }
+    </style>
   </head>
   <body>
-    <h1>GoTrue JS Examples</h1>
-    <article>
-      <h2>Sign up</h2>
-      <form name="signup">
-        <div class="message"></div>
-        <p>
-          <label>Email<br/><input type="email" name="email" required/></label>
-        </p>
-        <p>
-          <label>Password<br/><input type="password" name="password" required/></label>
-        </p>
-        <button type="submit">Sign up</button>
-      </form>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h1>Authentication</h1>
+        </div>
+      </div>
+      <div class="row">
+        <article class="col-sm">
+          <!-- sign up -->
+          <div class="">
+            <h2>
+              <a class="link" data-toggle="collapse" href="#sign-up" aria-expanded="false" aria-controls="sign-up">
+                Sign up
+              </a>
+            </h2>
+            <p>Create a new user with the specified email and password</p>
+            <div class="row collapse" id="sign-up">
+              <div class="col-sm">
+                <form name="signup">
+                  <p>
+                    <label>Email<br/><input type="email" name="email" required/></label>
+                  </p>
+                  <p>
+                    <label>Password<br/><input type="password" name="password" required/></label>
+                  </p>
+                  <div class="message"></div>
+                  <button class="btn btn-primary" type="submit">Sign me up!</button>
+                </form>
+              </div>
+              <div class="col-sm">
+                <h3>Request</h3>
+                <code>
+                  auth.signup(email, password).then(response => console.log("Confirmation email sent", response)).catch(error => console.log("It's an error", error));
+                </code>
+              </div>
+              <div class="col-sm">
+                <h3>Response</h3>
+                <code>
+                  {
+                    id: 'example-id',
+                    aud: '',
+                    role: '',
+                    email: 'example@example.com',
+                    confirmation_sent_at: '2018-04-27T22:36:59.636416916Z',
+                    app_metadata: { provider: 'email' },
+                    user_metadata: null,
+                    created_at: '2018-04-27T22:36:59.632133283Z',
+                    updated_at: '2018-04-27T22:37:00.061039863Z'
+                  }
+                </code>
+              </div>
+            </div>
+          </div>
+          <!-- confirm -->
+          <div class="">
+            <h2>
+              <a class="link" data-toggle="collapse" href="#confirm" aria-expanded="false" aria-controls="confirm">
+                Confirm
+              </a>
+            </h2>
+            <div class="row collapse" id="confirm">
+              <div class="col-sm">
+                <button class="btn btn-default" type="button" name="button">
+                  Confirm
+                </button>
+              </div>
+              <div class="col-sm">
+                <h3>Request</h3>
+                <code>
+                  auth.login(email.value, password.value).then(response => {showMessage("Success! Response: " + JSON.stringify({ response }), form);}).catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
+                </code>
+              </div>
+              <div class="col-sm">
+                <h3>Response</h3>
+                <code>
+                  {
+                  	"response": {
+                  		"api": {
+                  			"apiURL": "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity",
+                  			"_sameOrigin": true,
+                  			"defaultHeaders": {}
+                  		},
+                  		"url": "https://example.netlify.com/.netlify/identity",
+                  		"token": {
+                  			"access_token": "example-token",
+                  			"token_type": "bearer",
+                  			"expires_in": 3600,
+                  			"refresh_token": "S6gbTG9u9Yn51zvjP9pgWA",
+                  			"expires_at": 1526062471000
+                  		},
+                  		"id": "example-id",
+                  		"aud": "",
+                  		"role": "",
+                  		"email": "example@netlify.com",
+                  		"confirmed_at": "2018-05-04T23:57:17Z",
+                  		"app_metadata": {
+                  			"provider": "email"
+                  		},
+                  		"user_metadata": {},
+                  		"created_at": "2018-05-04T23:57:17Z",
+                  		"updated_at": "2018-05-04T23:57:17Z"
+                  	}
+                  }
+                </code>
+              </div>
+            </div>
+          </div>
 
-      <h2>Log in</h2>
-      <form name="login">
-        <div class="message"></div>
-        <p>
-          <label>Email<br/><input type="email" name="email" required/></label>
-        </p>
-        <p>
-          <label>Password<br/><input type="password" name="password" required/></label>
-        </p>
-        <button type="submit">Log in</button>
-      </form>
+          <!-- log in -->
+          <div class="">
+            <h2>
+              <a class="link" data-toggle="collapse" href="#log-in" aria-expanded="false" aria-controls="log-in">
+                Log in
+              </a>
+            </h2>
+            <p>Handles user login via the specified email and password</p>
+            <div class="row collapse" id="log-in">
+              <div class="col-sm">
+                <form name="login">
+                  <p>
+                    <label>Email<br/><input type="email" name="email" required/></label>
+                  </p>
+                  <p>
+                    <label>Password<br/><input type="password" name="password" required/></label>
+                  </p>
+                  <div class="message"></div>
+                  <button class="btn btn-primary" type="submit">Log in</button>
+                </form>
+              </div>
+              <div class="col-sm">
+                <h3>Request</h3>
+                <code>
+                  auth.login(email.value, password.value).then(response => {showMessage("Success! Response: " + JSON.stringify({ response }), form);}).catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
+                </code>
+              </div>
+              <div class="col-sm">
+                <h3>Response</h3>
+                <code>
+                  {
+                  	"response": {
+                  		"api": {
+                  			"apiURL": "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity",
+                  			"_sameOrigin": true,
+                  			"defaultHeaders": {}
+                  		},
+                  		"url": "https://example.netlify.com/.netlify/identity",
+                  		"token": {
+                  			"access_token": "example-token",
+                  			"token_type": "bearer",
+                  			"expires_in": 3600,
+                  			"refresh_token": "S6gbTG9u9Yn51zvjP9pgWA",
+                  			"expires_at": 1526062471000
+                  		},
+                  		"id": "example-id",
+                  		"aud": "",
+                  		"role": "",
+                  		"email": "example@netlify.com",
+                  		"confirmed_at": "2018-05-04T23:57:17Z",
+                  		"app_metadata": {
+                  			"provider": "email"
+                  		},
+                  		"user_metadata": {},
+                  		"created_at": "2018-05-04T23:57:17Z",
+                  		"updated_at": "2018-05-04T23:57:17Z"
+                  	}
+                  }
+                </code>
+              </div>
+            </div>
+          </div>
+          <!-- password recovery request -->
+          <div class="">
+            <h2>
+              <a class="link" data-toggle="collapse" href="#request-pw-recovery" aria-expanded="false" aria-controls="request-pw-recovery">
+                Request password recovery email
+              </a>
+            </h2>
+            <p>This function sends a request to GoTrue to trigger a password recovery email to the specified email address</p>
+            <div class="row collapse" id="request-pw-recovery">
+              <div class="col-sm">
+                <button class="btn btn-default" type="button" name="button">
+                  Forgot password!
+                </button>
+              </div>
+              <div class="col-sm">
+                <h3>Request</h3>
+                <code>
+                </code>
+              </div>
+              <div class="col-sm">
+                <h3>Response</h3>
+                <code>
+                </code>
+              </div>
+            </div>
+          </div>
+          <!-- password recovery -->
+          <div class="">
+            <h2>
+              <a class="link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="">
+                Sign in via link
+              </a>
+            </h2>
+            <p>This function recovers a user account via a recovery token</p>
+            <div class="row collapse" id="">
+              <div class="col-sm">
+                <div class="col-sm">
+                  <button class="btn btn-default" type="button" name="button">
+                    hahaha
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm">
+                <h3>Request</h3>
+                <code>
+                </code>
+              </div>
+              <div class="col-sm">
+                <h3>Response</h3>
+                <code>
+                </code>
+              </div>
+            </div>
+          </div>
+          <!-- get current user -->
+          <div class="">
+            <h2>
+              <a class="link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="">
+                bla bla bla
+              </a>
+            </h2>
+            <p></p>
+            <div class="row collapse" id="">
+              <div class="col-sm">
+                <button class="btn btn-default" type="button" name="button">
+                  hahaha
+                </button>
+              </div>
+              <div class="col-sm">
+                <h3>Request</h3>
+                <code>
+                </code>
+              </div>
+              <div class="col-sm">
+                <h3>Response</h3>
+                <code>
+                </code>
+              </div>
+            </div>
+          </div>
+          <!-- update user -->
+          <div class="">
+            <h2>
+              <a class="link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="">
+                bla bla bla
+              </a>
+            </h2>
+            <p></p>
+            <div class="row collapse" id="">
+              <div class="col-sm">
+                <button class="btn btn-default" type="button" name="button">
+                  hahaha
+                </button>
+              </div>
+              <div class="col-sm">
+                <h3>Request</h3>
+                <code>
+                </code>
+              </div>
+              <div class="col-sm">
+                <h3>Response</h3>
+                <code>
+                </code>
+              </div>
+            </div>
+          </div>
+          <!-- get jwt token -->
+          <div class="">
+            <h2>
+              <a class="link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="">
+                bla bla bla
+              </a>
+            </h2>
+            <p></p>
+            <div class="row collapse" id="">
+              <div class="col-sm">
+                <button class="btn btn-default" type="button" name="button">
+                  hahaha
+                </button>
+              </div>
+              <div class="col-sm">
+                <h3>Request</h3>
+                <code>
+                </code>
+              </div>
+              <div class="col-sm">
+                <h3>Response</h3>
+                <code>
+                </code>
+              </div>
+            </div>
+          </div>
+          <!-- logout -->
+          <div class="">
+            <h2>
+              <a class="link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="">
+                bla bla bla
+              </a>
+            </h2>
+            <p></p>
+            <div class="row collapse" id="">
+              <div class="col-sm">
+                <button class="btn btn-default" type="button" name="button">
+                  hahaha
+                </button>
+              </div>
+              <div class="col-sm">
+                <h3>Request</h3>
+                <code>
+                </code>
+              </div>
+              <div class="col-sm">
+                <h3>Response</h3>
+                <code>
+                </code>
+              </div>
+            </div>
+          </div>
+          <h1>Admininistration</h1>
+          <div id="get-user-div">
+            <h2>Get user</h2>
+            <p>
+              <code>
 
+              </code>
+            </p>
+            <button class="get-user btn btn-default" type="button" name="get-user">
+              Give me a user!
+            </button>
+            <div class="message"></div>
+          </div>
 
-      <h2>Get user</h2>
-      <button class="get-user" type="button" name="get-user">Get user</button>
-
-      <h2>Delete user</h2>
-      <button class="delete-user" type="button" name="delete-user">Delete user</button>
-
-    </article>
+          <h2>Delete user</h2>
+          <button class="delete-user" type="button" name="delete-user">Delete user</button>
+        </article>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="main.js"></script>
   </body>
 </html>

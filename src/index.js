@@ -62,12 +62,12 @@ document.querySelector("form[name='signup']").addEventListener("submit", e => {
   auth
     .signup(email.value, password.value)
     .then(response =>
-      showMessage("Success! Response: " + JSON.stringify(response), form)
+      showMessage("Created a user! Response: " + JSON.stringify(response), form)
     )
     .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
 });
 
-//test admin methods
+//login form
 document.querySelector("form[name='login']").addEventListener("submit", e => {
   e.preventDefault();
   const form = e.target;
@@ -77,14 +77,6 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
     .then(response => {
       const myAuthHeader = "Bearer " + response.token.access_token; //creates the bearer token
       showMessage("Success! Response: " + JSON.stringify(response), form);
-      fetch("/.netlify/functions/getuser", {
-        headers: { Authorization: myAuthHeader },
-        credentials: "include"
-      })
-        .then(response => {
-          showMessage("Got a user! Response: " + JSON.stringify(response));
-        })
-        .catch(error => console.error("Error:", error));
     })
     .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
 });
@@ -92,19 +84,29 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
 //Get a user via admin token
 
 const getUserBtn = document.querySelector(".get-user");
+const getUserDiv = document.querySelector("#get-user-div");
 
 auth
   .login("luna+01@netlify.com", "gotrue")
   .then(response => {
     const myAuthHeader = "Bearer " + response.token.access_token; //creates the bearer token
     getUserBtn.onclick = () => {
+      clearPage();
       fetch("/.netlify/functions/getuser", {
         headers: { Authorization: myAuthHeader },
         credentials: "include"
       })
         .then(response => {
-          console.log("Response" + JSON.stringify({ response }));
-          showMessage("Got a user! Response: " + JSON.stringify(response));
+          console.log("line 106");
+          return response.json();
+        })
+        .then(data => {
+          console.log("line 110");
+          showMessage(
+            "Got a user! Response: " + JSON.stringify(data),
+            getUserDiv
+          );
+          console.log("line 112");
         })
         .catch(error => console.error("Error:", error));
     };
@@ -135,4 +137,10 @@ auth
 
 function showMessage(msg, el) {
   el.querySelector(".message").textContent = msg;
+}
+
+function clearPage() {
+  document.querySelectorAll(".message").forEach(el => {
+    el.textContent = "";
+  });
 }
