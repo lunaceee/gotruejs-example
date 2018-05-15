@@ -3,10 +3,6 @@
   <head>
     <title>GoTrue JS Demo Site</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- highlight -->
-    <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
-
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
     <style media="screen">
       body {
@@ -41,6 +37,11 @@
       }
       .message {
         margin: 1em;
+      }
+      .code-block {
+        padding: 10px;
+        margin: 10px;
+        background-color:#f7f7f9;
       }
     </style>
   </head>
@@ -88,21 +89,21 @@
                   <h3>Example code</h3>
                 </div>
                 <div class="row">
-                  <figure>
+                  <div class="code-block">
                     <pre>
                       <code>
 auth.signup(email, password)
-    .then(response => console.log("Sign up successful!Check your inbox to confirm registration.", response))
+    .then(response => console.log("Sign up successful!Check your inbox!", response))
     .catch(error => console.log("It's an error", error));
                       </code>
                     </pre>
-                  </figure>
+                  </div>
                 </div>
                 <div class="row">
                   <h3>Example response</h3>
                 </div>
                 <div class="row">
-                  <figure>
+                  <div class="code-block">
                     <pre>
                       <code>
   {
@@ -118,7 +119,7 @@ auth.signup(email, password)
   }
                       </code>
                     </pre>
-                  </figure>
+                  </div>
                 </div>
                   <div class="row">
                     <h4>Try it out!</h4>
@@ -168,61 +169,28 @@ auth.signup(email, password)
                   <p>
                     For security reason, the <code>confirmation_token</code> is hidden from the browser via a redirect. If you wish to manually confirm a user using the <code>auth.confirm(token)</code> method, you can copy the link location of the email and use the <code>curl</code> script to get the confirmation token in your terminal. E.g.,
                   </p>
-                  <pre>
-                    <code>
-$ curl -I https://mandrillapp.com/track/click/30002868/example.netlify.com?p=example-token
-HTTP/1.1 302 Moved Temporarily
-Server: nginx/1.12.2
-Date: Tue, 15 May 2018 21:19:13 GMT
-Content-Type: text/html; charset=utf-8
-Set-Cookie: PHPSESSID=77c421bf85fa412e5f994f28a6b30956; expires=Wed, 16-May-2018 07:19:13 GMT; path=/; secure; HttpOnly
-Expires: Thu, 19 Nov 1981 08:52:00 GMT
-Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
-Pragma: no-cache
-Set-Cookie: PHPSESSID=77c421bf85fa412e5f994f28a6b30956; expires=Wed, 16-May-2018 07:19:13 GMT; path=/; secure; httponly
-Location: https://example.netlify.com/#confirmation_token=Iyo9xHvsGVbW-9A9v4sDmQ
-                    </code>
-                  </pre>
-
-                  <div class="row">
-                    <div class="col-4">
-                      <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Browser</div>
-                        <div class="card-body text-dark">
-                          <!-- <h5 class="card-title">A user signed up via a sign up form.</h5> -->
-                          <p class="card-text">
-                            A user signed up via a sign up form.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Inbox</div>
-                        <div class="card-body text-dark">
-                          <!-- <h5 class="card-title">A user receive a confirmation email</h5> -->
-                          <p class="card-text">
-                            User receives a confirmation email and click on the confirmation link.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Browser</div>
-                        <div class="card-body text-dark">
-                          <!-- <h5 class="card-title">Dark card title</h5> -->
-                          <p class="card-text">
-                              <code>auth.confirm(token)</code>
-                            method gets triggered and user redirected to your site.
-                          </p>
-                      </div>
-                    </div>
+                  <div class="code-block">
+                    <pre>
+                      <code>
+  $ curl -I https://mandrillapp.com/track/click/30002868/example.netlify.com?p=example-token
+  HTTP/1.1 302 Moved Temporarily
+  Server: nginx/1.12.2
+  Date: Tue, 15 May 2018 21:19:13 GMT
+  Content-Type: text/html; charset=utf-8
+  Set-Cookie: PHPSESSID=77c421bf85fa412e5f994f28a6b30956; expires=Wed, 16-May-2018 07:19:13 GMT; path=/; secure; HttpOnly
+  Expires: Thu, 19 Nov 1981 08:52:00 GMT
+  Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+  Pragma: no-cache
+  Set-Cookie: PHPSESSID=77c421bf85fa412e5f994f28a6b30956; expires=Wed, 16-May-2018 07:19:13 GMT; path=/; secure; httponly
+  Location: https://example.netlify.com/#confirmation_token=Iyo9xHvsGVbW-9A9v4sDmQ
+                      </code>
+                    </pre>
                   </div>
-                </div>
+
+
                 <div class="row">
                   <h3>Example code</h3>
-                  <figure>
+                  <div class="code-block">
                     <pre>
                       <code>
 auth
@@ -235,11 +203,11 @@ auth
   });
                       </code>
                     </pre>
-                  </figure>
+                  </div>
                 </div>
                 <div class="row">
                   <h3>Example response</h3>
-                  <figure>
+                  <div class="code-block">
                     <pre>
                       <code>
 {
@@ -273,7 +241,7 @@ auth
 }
                       </code>
                     </pre>
-                  </figure>
+                  </div>
                 </div>
                 <div class="col-lg-12">
 
@@ -295,7 +263,7 @@ auth
                 </div>
                 <div class="row">
                   <h3>Example code</h3>
-                  <figure>
+                  <div class="code-block">
                     <pre>
                       <code>
 auth
@@ -306,11 +274,11 @@ auth
   .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
                       </code>
                     </pre>
-                  </figure>
+                  </div>
                 </div>
                 <div class="row">
                   <h3>Example response</h3>
-                  <figure>
+                  <div class="code-block">
                     <pre>
                       <code>
 {
@@ -343,7 +311,7 @@ auth
 }
                       </code>
                     </pre>
-                  </figure>
+                  </div>
                 </div>
                 <div class="row">
                   <h4>Try it out!</h4>
@@ -539,9 +507,6 @@ auth
         </div>
       </div>
     </div>
-    <!-- highlight -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
     <!-- bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
