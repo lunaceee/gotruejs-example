@@ -60,9 +60,6 @@
               <a class="nav-link" href="#">Update user</a>
               <a class="nav-link" href="#">Get JWT token</a>
               <a class="nav-link" href="#">Log out</a>
-          </nav>
-          <br>
-          <nav class="nav flex-column">
               <h4><a href="#admininistration">Admininistration</a></h4>
               <a class="nav-link" href="#">Get user</a>
               <a class="nav-link" href="#">Update user</a>
@@ -73,12 +70,12 @@
         </div>
         <div class="col-lg-8">
           <!-- content -->
-            <article class="col-sm">
+            <article class="">
               <div class="row">
                   <h1 id="authentication">Authentication</h1>
               </div>
               <!-- sign up -->
-              <div class="" id="sign-up">
+              <div class="tab-content" id="sign-up">
                 <div class="row">
                   <h2>
                       Sign up
@@ -159,16 +156,75 @@ auth.signup(email, password)
                   </h2>
                 </div>
                 <div class="row">
-                  <p>This function confirms a user sign up via a unique confirmation token</p>
+                  <p>
+                    This function confirms a user sign up via a unique confirmation token.<br>
+                    <br>When a new user signed up, a confirmation email will be sent to the registered email address.
+                    <br>(Make sure <code>Autoconfirm</code> isn't turned on under <a href="https://www.netlify.com/docs/identity/#adding-users">identity settings</a>.)
+                  </p>
+                  <p>
+                    In the email, there's a link that says <i>Confirm your email address</i>.
+                    When a user clicks on the link, it'll be redirected to the site of the site with a fragment identifier that looks like <code>#confirmation_token=Iyo9xHvsGVbW-9A9v4sDmQ</code>.
+                  </p>
+                  <p>
+                    For security reason, the <code>confirmation_token</code> is hidden from the browser via a redirect. If you wish to manually confirm a user using the <code>auth.confirm(token)</code> method, you can copy the link location of the email and use the <code>curl</code> script to get the confirmation token in your terminal. E.g.,
+                  </p>
+                  <pre>
+                    <code>
+{curl -I "link from confirmation email"
+...
+Location: "https://example.netlify.com/#confirmation_token=example-token"
+                    </code>
+                  </pre>
+
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="card border-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Browser</div>
+                        <div class="card-body text-dark">
+                          <!-- <h5 class="card-title">A user signed up via a sign up form.</h5> -->
+                          <p class="card-text">
+                            A user signed up via a sign up form.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card border-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Inbox</div>
+                        <div class="card-body text-dark">
+                          <!-- <h5 class="card-title">A user receive a confirmation email</h5> -->
+                          <p class="card-text">
+                            User receives a confirmation email and click on the confirmation link.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card border-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Browser</div>
+                        <div class="card-body text-dark">
+                          <!-- <h5 class="card-title">Dark card title</h5> -->
+                          <p class="card-text">
+                              <code>auth.confirm(token)</code>
+                            method gets triggered and user redirected to your site.
+                          </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <h3>Example code</h3>
                   <figure>
                     <pre>
                       <code>
-auth.login(email.value, password.value)
-    .then(response => {showMessage("Success! Response: " + JSON.stringify({ response }), form);})
-    .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
+                        auth
+                          .confirm(token)
+                          .then(function(response) {
+                            console.log("Account confirmed!Welcome to the party!", JSON.stringify({ response }));
+                          })
+                          .catch(function(e) {
+                            console.log(e);
+                          });
                       </code>
                     </pre>
                   </figure>
@@ -179,42 +235,40 @@ auth.login(email.value, password.value)
                     <pre>
                       <code>
 {
-  "response": {
-    "api": {
-      "apiURL": "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity",
-      "_sameOrigin": true,
-      "defaultHeaders": {}
-    },
-    "url": "https://example.netlify.com/.netlify/identity",
-    "token": {
-      "access_token": "example-token",
-      "token_type": "bearer",
-      "expires_in": 3600,
-      "refresh_token": "S6gbTG9u9Yn51zvjP9pgWA",
-      "expires_at": 1526062471000
-    },
-    "id": "example-id",
-    "aud": "",
-    "role": "",
-    "email": "example@netlify.com",
-    "confirmed_at": "2018-05-04T23:57:17Z",
-    "app_metadata": {
-      "provider": "email"
-    },
-    "user_metadata": {},
-    "created_at": "2018-05-04T23:57:17Z",
-    "updated_at": "2018-05-04T23:57:17Z"
-  }
+	"response": {
+		"api": {
+			"apiURL": "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity",
+			"_sameOrigin": true,
+			"defaultHeaders": {}
+		},
+		"url": "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity",
+		"token": {
+			"access_token": "example-jwt-token",
+			"token_type": "bearer",
+			"expires_in": 3600,
+			"refresh_token": "rRbzn5kppCr09Fd5FX9uxg",
+			"expires_at": 1526110512000
+		},
+		"id": "example-id",
+		"aud": "",
+		"role": "",
+		"email": "example@netlify.com",
+		"confirmed_at": "2018-05-12T06:35:13Z",
+		"confirmation_sent_at": "2018-05-12T06:34:35Z",
+		"app_metadata": {
+			"provider": "email"
+		},
+		"user_metadata": {},
+		"created_at": "2018-05-12T06:34:35Z",
+		"updated_at": "2018-05-12T06:34:35Z"
+	}
 }
                       </code>
                     </pre>
                   </figure>
                 </div>
-                <div class="confirmUsrDiv">
-                  <h4>Try it out!</h4>
-                  <button class="btn btn-primary confirm-user" type="button" name="button">
-                    Confirm
-                  </button>
+                <div class="col-lg-12">
+
                 </div>
               </div>
 
