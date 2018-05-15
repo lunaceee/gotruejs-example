@@ -1689,7 +1689,7 @@ exports.handler = (() => {
       console.log(JSON.stringify(resObj));
       return {
         statusCode: 204,
-        body: resObj
+        body: JSON.stringify(resObj)
       };
     } catch (e) {
       console.log("GOT HERE! 500! outer");
