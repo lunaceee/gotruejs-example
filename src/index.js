@@ -103,7 +103,7 @@ auth
         credentials: "include"
       })
         .then(response => {
-          console.log(JSON.stringify(response));
+          console.log(JSON.stringify("Response: " + { response }));
           showMessage("Got a user! Response: " + JSON.stringify(response));
         })
         .catch(error => console.error("Error:", error));
