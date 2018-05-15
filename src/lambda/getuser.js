@@ -15,7 +15,10 @@ exports.handler = async (event, context) => {
     const resObj = await response.json();
     console.log("Got a user!");
     console.log(JSON.stringify(resObj));
-    return { statusCode: 204 };
+    return {
+      statusCode: 204,
+      body: resObj
+    };
   } catch (e) {
     console.log("GOT HERE! 500! outer");
     return { statusCode: 500, body: "Internal Server Error: " + e };
