@@ -13,7 +13,7 @@ exports.handler = async (event, context) => {
       headers: { Authorization: adminAuthHeader }
     });
     const resObj = await response.json();
-    console.log("Got a user!");
+    console.log("Got a user hahahahah!");
     console.log(JSON.stringify(resObj));
     return {
       statusCode: 204,

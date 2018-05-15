@@ -1685,7 +1685,7 @@ exports.handler = (() => {
         headers: { Authorization: adminAuthHeader }
       });
       const resObj = yield response.json();
-      console.log("Got a user!");
+      console.log("Got a user hahahahah!");
       console.log(JSON.stringify(resObj));
       return {
         statusCode: 204,
