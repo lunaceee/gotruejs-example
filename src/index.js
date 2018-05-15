@@ -67,7 +67,10 @@ document.querySelector("form[name='signup']").addEventListener("submit", e => {
     .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
 });
 
-//login form
+//confirm
+const confirmUsrBtn = document.querySelector(".confirm-user");
+
+//login
 document.querySelector("form[name='login']").addEventListener("submit", e => {
   e.preventDefault();
   const form = e.target;
