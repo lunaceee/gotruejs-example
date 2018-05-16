@@ -39,10 +39,28 @@
         margin: 1em;
       }
       .code-block {
-        padding: 10px;
+        padding: 20px;
         margin: 10px;
         background-color:#f7f7f9;
       }
+      nav {
+        margin: 10px 0;
+      }
+      #myBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+      }
+
+    #myBtn:hover {
+      background-color: #555;
+    }
     </style>
   </head>
   <body>
@@ -51,11 +69,10 @@
         <div class="col-sm">
           <!-- left side bar -->
           <nav class="nav flex-column">
-              <h4><a href="#authentication">Authentication</a></h4>
               <a class="nav-link" href="#sign-up">Sign up</a>
               <a class="nav-link" href="#confirm">Confirmation</a>
               <a class="nav-link" href="#log-in">Log in</a>
-              <a class="nav-link" href="#recovery-pw-request">Request Password Recovery</a>
+              <a class="nav-link" href="#request-pw-recovery">Request Password Recovery</a>
               <a class="nav-link" href="#recoverypw">Recover</a>
               <a class="nav-link" href="#current-user">Get current user</a>
               <a class="nav-link" href="#update-user">Update user</a>
@@ -66,9 +83,6 @@
         <div class="col-lg-8">
           <!-- content -->
             <article class="">
-              <div class="row">
-                  <h1 id="authentication">Authentication</h1>
-              </div>
               <!-- sign up -->
               <div class="" id="sign-up">
                 <div class="row">
@@ -164,7 +178,7 @@ auth.signup(email, password)
                   <p>
                     For security reason, the <code>confirmation_token</code> is hidden from the browser via a redirect. If you wish to manually confirm a user using the <code>auth.confirm(token)</code> method, you can copy the link location of the email and use the <code>curl</code> script to get the confirmation token in your terminal. E.g.,
                   </p>
-                  <div class="code-block">
+                  <div class="code-block col-sm-12">
                     <pre>
                       <code>
   $ curl -I https://mandrillapp.com/track/click/30002868/example.netlify.com?p=example-token
@@ -181,11 +195,9 @@ auth.signup(email, password)
                       </code>
                     </pre>
                   </div>
-
-
                 <div class="row">
                   <h3>Example code</h3>
-                  <div class="code-block">
+                  <div class="code-block col-sm-12">
                     <pre>
                       <code>
 auth
@@ -277,32 +289,32 @@ auth
                     <pre>
                       <code>
 {
-	"response": {
-		"api": {
-			"apiURL": "https://example.netlify.com/.netlify/identity",
-			"_sameOrigin": true,
-			"defaultHeaders": {}
-		},
-		"url": "https://example.netlify.com/.netlify/identity",
-		"token": {
-			"access_token": "example-jwt-token",
-			"token_type": "bearer",
-			"expires_in": 3600,
-			"refresh_token": "example-refresh-token",
-			"expires_at": 1526062471000
-		},
-		"id": "example-id",
-		"aud": "",
-		"role": "",
-		"email": "example@netlify.com",
-		"confirmed_at": "2018-05-04T23:57:17Z",
-		"app_metadata": {
-			"provider": "email"
-		},
-		"user_metadata": {},
-		"created_at": "2018-05-04T23:57:17Z",
-		"updated_at": "2018-05-04T23:57:17Z"
-	}
+  "response": {
+    "api": {
+      "apiURL": "https://example.netlify.com/.netlify/identity",
+      "_sameOrigin": true,
+      "defaultHeaders": {}
+    },
+    "url": "https://example.netlify.com/.netlify/identity",
+    "token": {
+      "access_token": "example-jwt-token",
+      "token_type": "bearer",
+      "expires_in": 3600,
+      "refresh_token": "example-refresh-token",
+      "expires_at": 1526062471000
+    },
+    "id": "example-id",
+    "aud": "",
+    "role": "",
+    "email": "example@netlify.com",
+    "confirmed_at": "2018-05-04T23:57:17Z",
+    "app_metadata": {
+      "provider": "email"
+    },
+    "user_metadata": {},
+    "created_at": "2018-05-04T23:57:17Z",
+    "updated_at": "2018-05-04T23:57:17Z"
+  }
 }
                       </code>
                     </pre>
@@ -339,7 +351,7 @@ auth
               <div class="" id="request-pw-recovery">
                 <div class="row">
                   <h2>
-                    <a class="link" href="#request-pw-recovery">
+                    <a class="link">
                       Request password recovery email
                     </a>
                   </h2>
@@ -381,12 +393,10 @@ auth
                       <br>
                 </div>
               <!-- password recovery -->
-              <div class="" id="request-pw">
+              <div class="" id="recoverypw">
                 <div class="row">
                   <h2>
-                    <a class="link" href="#request-pw">
                       Account recovery
-                    </a>
                   </h2>
                 </div>
                   <div class="row">
@@ -417,34 +427,34 @@ auth
                         <pre>
                           <code>
 {
-	"response": {
-		"api": {
-			"apiURL": "https://example.netlify.com/.netlify/identity",
-			"_sameOrigin": true,
-			"defaultHeaders": {}
-		},
-		"url": "https://example.netlify.com/.netlify/identity",
-		"token": {
-			"access_token": "example-jwt-token",
-			"token_type": "bearer",
-			"expires_in": 3600,
-			"refresh_token": "example-refresh-token",
-			"expires_at": 1526107729000
-		},
-		"id": "example-id",
-		"aud": "",
-		"role": "",
-		"email": "example@netlify.com",
-		"confirmed_at": "2018-05-12T05:48:49Z",
-		"invited_at": "2018-05-04T23:40:00Z",
-		"recovery_sent_at": "2018-05-12T05:48:13Z",
-		"app_metadata": {
-			"provider": "email"
-		},
-		"user_metadata": {},
-		"created_at": "2018-05-04T23:40:00Z",
-		"updated_at": "2018-05-04T23:40:00Z"
-	}
+  "response": {
+    "api": {
+      "apiURL": "https://example.netlify.com/.netlify/identity",
+      "_sameOrigin": true,
+      "defaultHeaders": {}
+    },
+    "url": "https://example.netlify.com/.netlify/identity",
+    "token": {
+      "access_token": "example-jwt-token",
+      "token_type": "bearer",
+      "expires_in": 3600,
+      "refresh_token": "example-refresh-token",
+      "expires_at": 1526107729000
+    },
+    "id": "example-id",
+    "aud": "",
+    "role": "",
+    "email": "example@netlify.com",
+    "confirmed_at": "2018-05-12T05:48:49Z",
+    "invited_at": "2018-05-04T23:40:00Z",
+    "recovery_sent_at": "2018-05-12T05:48:13Z",
+    "app_metadata": {
+      "provider": "email"
+    },
+    "user_metadata": {},
+    "created_at": "2018-05-04T23:40:00Z",
+    "updated_at": "2018-05-04T23:40:00Z"
+  }
 }
                           </code>
                         </pre>
@@ -737,6 +747,27 @@ user
         </div>
       </div>
     </div>
+    <button class="btn btn-primary" onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("myBtn").style.display = "block";
+  } else {
+    document.getElementById("myBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
     <!-- bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
