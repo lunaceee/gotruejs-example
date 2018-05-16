@@ -1,58 +1,33 @@
 import "file-loader?name=index.html!./index.html";
 import GoTrue from "gotrue-js";
 
-const auth = new GoTrue({
-  APIUrl: "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity"
-});
+let auth;
+//
+// auth = new GoTrue({
+//   APIUrl: "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity"
+// });
+
+// auth
+//   .login("luna+07@netlify.com", "icecream")
+//   .then(response => response)
+//   .catch(error => error);
+
+document
+  .querySelector("form[name='api-endpoint']")
+  .addEventListener("submit", e => {
+    e.preventDefault();
+    const form = e.target;
+    const { endpoint } = form.elements;
+    auth = new GoTrue({
+      APIUrl: endpoint.value
+    });
+    console.log(auth);
+    document.querySelector(
+      "#alert-msg"
+    ).innerHTML = `<br><p>API endpoint submitted!</p>`;
+  });
 
 window.auth = auth;
-//
-// //signing up a user
-//
-// auth
-//   .signup("luna+14@netlify.com", "gotrue")
-//   .then(function(response) {
-//     console.log(JSON.stringify({ response }));
-//   })
-//   .catch(error => console.log("It's an error", error));
-//
-// //login methods
-// auth
-//   .login("luna+12@netlify.com", "gotrue")
-//   .then(function(response) {
-//     console.log(JSON.stringify(response));
-//   })
-//   .catch(function(e) {
-//     console.log(e);
-//   });
-//
-// //comfirm a user via access_token
-// auth
-//   .confirm("Iyo9xHvsGVbW-9A9v4sDmQ")
-//   .then(function(response) {
-//     console.log("Confirmation email sent", JSON.stringify({ response }));
-//   })
-//   .catch(function(e) {
-//     console.log(e);
-//   });
-//
-// //test out password recovery method
-// auth
-//   .requestPasswordRecovery("luna+identity@netlify.com")
-//   .then(response =>
-//     console.log("Recovery email sent", JSON.stringify({ response }))
-//   )
-//   .catch(error => console.log("Error sending recovery mail: %o", error));
-//
-// //test out recovery token method
-// auth
-//   .recover("6T8jMdpax0S5CFgHDMGCZg")
-//   .then(function(response) {
-//     console.log("Logged in as %s", JSON.stringify({ response }));
-//   })
-//   .catch(function(e) {
-//     console.log(e);
-//   });
 
 //sign up
 document.querySelector("form[name='signup']").addEventListener("submit", e => {
@@ -67,14 +42,18 @@ document.querySelector("form[name='signup']").addEventListener("submit", e => {
     .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
 });
 
+document.querySelector("#user-email").textContent = "Are you logged in?";
+
 //login
 document.querySelector("form[name='login']").addEventListener("submit", e => {
   e.preventDefault();
   const form = e.target;
   const { email, password } = form.elements;
+
   auth
     .login(email.value, password.value)
     .then(response => {
+      document.querySelector("#user-email").textContent = email.value;
       showMessage(
         "Log in successful! Response: " + JSON.stringify(response),
         form
@@ -85,24 +64,39 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
     );
 });
 
+//request recovery email
+document
+  .querySelector("form[name='request_recovery']")
+  .addEventListener("submit", e => {
+    e.preventDefault();
+    const form = e.target;
+    const user = auth.currentUser();
+    const email = user.email;
+
+    auth
+      .requestPasswordRecovery(email)
+      .then(response =>
+        showMessage(
+          "Recovery email sent, check your inbox! Response: " +
+            JSON.stringify(response),
+          form
+        )
+      )
+      .catch(error =>
+        showMessage("Something went wrong :( " + JSON.stringify(error), form)
+      );
+  });
+
 //get current user
 document
   .querySelector("form[name='get_current_user']")
   .addEventListener("submit", e => {
     e.preventDefault();
     const form = e.target;
-    const { email, password } = form.elements;
-    auth
-      .login(email.value, password.value)
-      .then(response => {
-        showMessage(
-          "Got current user! Response: " + JSON.stringify(auth.currentUser()),
-          form
-        );
-      })
-      .catch(error =>
-        showMessage("Failed to log in :( " + JSON.stringify(error), form)
-      );
+    showMessage(
+      "Got current user! Response: " + JSON.stringify(auth.currentUser()),
+      form
+    );
   });
 
 //Update users
@@ -111,23 +105,57 @@ document
   .addEventListener("submit", e => {
     e.preventDefault();
     const form = e.target;
-    const { email, password } = form.elements;
-    auth
-      .login(email.value, password.value)
-      .then(() => {
-        const user = auth.currentUser();
-        user
-          .update({ email: "example@example.com", password: "password" })
-          .then(user => console.log("Updated user %s", user))
-          .catch(error => {
-            console.log("Failed to update user: %o", error);
-            throw error;
-          });
-      })
+    const { password } = form.elements;
+    const user = auth.currentUser();
+    user
+      .update({ password: password.value })
+      .then(resopnse =>
+        showMessage("Updated user! Response: " + JSON.stringify(response), form)
+      )
       .catch(error =>
-        showMessage("Failed to log in :( " + JSON.stringify(error), form)
+        showMessage("Failed to update user :( " + JSON.stringify(error), form)
       );
   });
+
+//get jwt token
+document
+  .querySelector("form[name='get_jwt_token']")
+  .addEventListener("submit", e => {
+    e.preventDefault();
+    const form = e.target;
+    const user = auth.currentUser();
+    const jwt = user.jwt();
+    jwt
+      .then(response =>
+        showMessage(
+          "Got JWT token! Response: " + JSON.stringify(response),
+          form
+        )
+      )
+      .catch(error => {
+        showMessage(
+          "Failed to get JWT token :( " + JSON.stringify(error),
+          form
+        );
+        throw error;
+      });
+  });
+
+//log out
+document.querySelector("form[name='log_out']").addEventListener("submit", e => {
+  e.preventDefault();
+  const form = e.target;
+  const user = auth.currentUser();
+  user
+    .logout()
+    .then(response =>
+      showMessage("Logged out! Response: " + JSON.stringify(response), form)
+    )
+    .catch(error => {
+      showMessage("Failed to log out :( " + JSON.stringify(error), form);
+      throw error;
+    });
+});
 
 //Get a user via admin token
 
