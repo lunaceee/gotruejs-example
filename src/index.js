@@ -49,7 +49,6 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
   e.preventDefault();
   const form = e.target;
   const { email, password } = form.elements;
-
   auth
     .login(email.value, password.value)
     .then(response => {
