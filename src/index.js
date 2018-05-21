@@ -4,12 +4,13 @@ import "./style.css";
 
 let auth;
 
+
 // auth = new GoTrue({
 //   APIUrl: "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity"
 // });
 
 // auth
-//   .login("luna+07@netlify.com", "1010")
+//   .login("luna+07@netlify.com", "2222")
 //   .then(response => console.log("auth", response))
 //   .catch(error => error);
 
@@ -42,9 +43,9 @@ document.querySelector("form[name='signup']").addEventListener("submit", e => {
   auth
     .signup(email.value, password.value)
     .then(response =>
-      showMessage("Created a user! Response: " + JSON.stringify(response), form)
+      showMessage(`<p>Created a user! </p><p>Response: </p><code>${JSON.stringify(response)}</code>`, form)
     )
-    .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
+    .catch(error => showMessage(`Failed :( <code>${JSON.stringify(error)}</code>`, form));
 });
 
 document.querySelector("#user-email").textContent = "Are you logged in?";
@@ -62,12 +63,12 @@ document.querySelector("form[name='login']").addEventListener("submit", e => {
     .then(response => {
       document.querySelector("#user-email").textContent = email.value;
       showMessage(
-        "Log in successful! Response: " + JSON.stringify(response),
+        `<p>Log in successful! </p><p>Response:  </p><code>${JSON.stringify(response)}</code>`,
         form
       );
     })
     .catch(error =>
-      showMessage("Failed to log in :( " + JSON.stringify(error), form)
+      showMessage(`Failed to log in :( <code>${JSON.stringify(error)}</code>`, form)
     );
 });
 
@@ -84,14 +85,12 @@ document
       .requestPasswordRecovery(email)
       .then(response =>
         showMessage(
-          "Recovery email sent, check your inbox! Response: " +
-          JSON.stringify(response),
+          `<p>Recovery email sent, check your inbox! </p><p>Response: </p><code>${JSON.stringify(response)}</code>`,
           form
         )
       )
       .catch(error =>
-        showMessage("Something went wrong :( " + JSON.stringify(error), form)
-      );
+        showMessage(`Something went wrong :( <code>${JSON.stringify(error)}</code>`, form));
   });
 
 //get current user
@@ -100,11 +99,14 @@ document
   .addEventListener("submit", e => {
     e.preventDefault();
     const form = e.target;
-    showMessage(
-      "Got current user! Response: " + JSON.stringify(auth.currentUser()),
-      form
-    );
+    const user = auth.currentUser();
+    user ?
+      showMessage(
+        `<p>Got current user! </p><p>Response: </p><code>${JSON.stringify(user)}</code>`,
+        form
+      ) : showMessage(`<p>User not found...did you log in?</p>`, form)
   });
+
 
 //Update users
 document
@@ -120,39 +122,45 @@ document
       .update({
         password: password.value
       })
-    showMessage(
-      "Updated user! Response: " + JSON.stringify(response),
-      form
-    );
-  })
-  .catch(error => {
-    showMessage("Failed to update user :( " + JSON.stringify(error), form);
+      .then(
+        response => {
+          showMessage(
+            `<p>Updated user! </p><p>Response: </p><code>${JSON.stringify(response)}</code>`,
+            form
+          )
+        })
+      .catch(error => {
+        showMessage(`Failed to update user :( <code>${JSON.stringify(error)}</code>`, form)
+      });
   });
+
 
 //get jwt token
 document
-  .querySelector("form[name='get_jwt_token']")
+  .querySelector("form[name='get_token']")
   .addEventListener("submit", e => {
     e.preventDefault();
     const form = e.target;
     const user = auth.currentUser();
     const jwt = user.jwt();
+
     jwt
       .then(response =>
         showMessage(
-          "Got JWT token! Response: " + JSON.stringify(response),
+          `<p>Got JWT token! </p><p>Response: </p><code>${JSON.stringify(response)}</code>`,
           form
         )
       )
       .catch(error => {
         showMessage(
-          "Failed to get JWT token :( " + JSON.stringify(error),
+          `<p>Failed to get JWT token :( </p><code>${JSON.stringify(error)}</code>`,
           form
         );
         throw error;
       });
   });
 
+console.log("log out??", document.querySelector("form[name='log_out']"));
 //log out
 document.querySelector("form[name='log_out']").addEventListener("submit", e => {
   e.preventDefault();
@@ -161,11 +169,10 @@ document.querySelector("form[name='log_out']").addEventListener("submit", e => {
   user
     .logout()
     .then(response => {
-      console.log("logged out!");
-      showMessage("Logged out! Response: " + JSON.stringify(response), form)
+      showMessage(`<p>Logged out!</p><p>Response: </p><code>${JSON.stringify(response)}</code>`, form)
     })
     .catch(error => {
-      showMessage("Failed to log out :( " + JSON.stringify(error), form);
+      showMessage(`<p>Failed to log out :(</p><code>${JSON.stringify(error)}</code>`, form);
       throw error;
     });
 });
@@ -191,9 +198,9 @@ auth
         .then(response => {
           return response.json();
         })
-        .then(data => {
+        .then(response => {
           showMessage(
-            "Got a user! Response: " + JSON.stringify(data),
+            `<p>Got a user!</p><p>Response: </p>${JSON.stringify(response)}`,
             getUserDiv
           );
         })
