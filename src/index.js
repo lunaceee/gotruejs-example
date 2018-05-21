@@ -170,13 +170,6 @@ document.querySelector("form[name='log_out']").addEventListener("submit", e => {
     });
 });
 
-//delete user
-document.querySelector("form[name='delete']").addEventListener("submit", e => {
-  e.preventDefault();
-  const form = e.target;
-  const user = auth.currentUser();
-
-})
 
 //Get a user via admin token
 
