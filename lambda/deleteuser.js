@@ -63,6 +63,7 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
+<<<<<<< HEAD
 /******/ ([
 /* 0 */
 /***/ (function(module, exports) {
@@ -1701,3 +1702,15 @@ exports.handler = (() => {
 
 /***/ })
 /******/ ])));
+=======
+/******/ ({
+
+/***/ 6:
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/Bluna/lunathecat-projects/gotruejs-examples/src/lambda/deleteuser.js'");
+
+/***/ })
+
+/******/ })));
+>>>>>>> 2c16306... wip

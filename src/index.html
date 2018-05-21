@@ -1,176 +1,162 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>GoTrue JS Demo Site</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-    <style media="screen">
-      body {
-        margin-top: 48px;
-        font-family: 'Titillium Web', sans-serif;
-      }
-      .message {
-        margin: 1em;
-      }
-      .code-block {
-        padding: 20px;
-        margin: 10px;
-        background-color:#f7f7f9;
-      }
-      nav {
-        margin: 10px 0;
-      }
-      #myBtn {
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 30px;
-        z-index: 99;
-        font-size: 18px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-      }
-      #myBtn:hover {
-        background-color: #555;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <!-- left side bar -->
-          <nav class="nav flex-column">
-              <a class="nav-link" href="#sign-up">Sign up</a>
-              <a class="nav-link" href="#confirm">Confirmation</a>
-              <a class="nav-link" href="#log-in">Log in</a>
-              <a class="nav-link" href="#request-pw-recovery">Request Password Recovery</a>
-              <a class="nav-link" href="#recoverypw">Recover</a>
-              <a class="nav-link" href="#current-user">Get current user</a>
-              <a class="nav-link" href="#update-user">Update user</a>
-              <a class="nav-link" href="#get-jwt-token">Get JWT token</a>
-              <a class="nav-link" href="#log-out">Log out</a>
-          </nav>
+
+<head>
+  <title>GoTrue JS Demo Site</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+</head>
+
+<body>
+  <div class=" container ">
+    <div class="row ">
+      <div class="col-sm ">
+        <!-- left side bar -->
+        <nav class="nav flex-column ">
+          <a class="nav-link " href="#sign-up ">Sign up</a>
+          <a class="nav-link " href="#confirm ">Confirmation</a>
+          <a class="nav-link " href="#log-in ">Log in</a>
+          <a class="nav-link " href="#request-pw-recovery ">Request Password Recovery</a>
+          <a class="nav-link " href="#recoverypw ">Recover</a>
+          <a class="nav-link " href="#current-user ">Get current user</a>
+          <a class="nav-link " href="#update-user ">Update user</a>
+          <a class="nav-link " href="#get-jwt-token ">Get JWT token</a>
+          <a class="nav-link " href="#log-out ">Log out</a>
+        </nav>
+      </div>
+      <div class="col-lg-8 ">
+        <div class="row ">
+          <h3>
+            <code>gotrue-js</code> playground</h3>
         </div>
-        <div class="col-lg-8">
-          <div class="row">
-            <h3>Play around <code>gotrue-js</code> library with your own site</h3>
+        <div class="row ">
+          <div class="card col-lg-12 ">
+            <div class="card-body ">
+              <form name="endpoint">
+                <div class="form-group ">
+                  <input class="form-control " type="text " name="apiendpoint" aria-describedby="help
+    " required placeholder="Enter your identity API Endpoint " />
+                  <small id="help " class="form-text text-muted ">Find the endpoint on the identity page of your Netlify site dashboard</small>
+                </div>
+                <button class="btn btn-primary " type="submit ">Submit</button>
+                <p id="alert-msg"></p>
+              </form>
+            </div>
           </div>
-          <div class="row">
-            <div class="card col-lg-12">
-              <div class="card-body">
-                <form name="api-endpoint">
-                  <div class="form-group">
-                    <input class="form-control" type="text" name="endpoint" aria-describedby="help" required placeholder="Enter your identity API Endpoint"/>
-                    <small id="help" class="form-text text-muted">Find the endpoint on the identity page of your Netlify site dashboard</small>
-                  </div>
-                  <button class="btn btn-primary" type="submit">Submit</button>
-                  <p id="alert-msg"></p>
-                </form>
+        </div>
+        <br>
+        <!-- content -->
+        <article class=" ">
+          <!-- sign up -->
+          <div class=" " id="sign-up ">
+            <div class="row ">
+              <h2>
+                Sign up
+              </h2>
+            </div>
+            <div class="row ">
+              <p>Create a new user with the specified email and password</p>
+            </div>
+            <div class="row ">
+              <h3>Example code</h3>
+            </div>
+            <div class="row ">
+              <div class="code-block ">
+                <pre>
+                    <code>
+auth.signup(email, password)
+    .then(response => console.log("Sign up successful!Check your inbox! ", response))
+    .catch(error => console.log("It 's an error", error));
+                    </code>
+                </pre>
+              </div>
+            </div>
+            <div class="row">
+              <h3>Example response</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
+                      <code>
+  {
+    id: 'example-id ',
+    aud: ' ',
+    role: ' ',
+    email: 'example@example.com ',
+    confirmation_sent_at: '2018-04-27T22:36:59.636416916Z ',
+    app_metadata: { provider: 'email ' },
+    user_metadata: null,
+    created_at: '2018-04-27T22:36:59.632133283Z ',
+    updated_at: '2018-04-27T22:37:00.061039863Z '
+  }
+                      </code>
+                    </pre>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Try it out!</h4>
+            </div>
+            <br>
+            <div class="row">
+              <div class="card">
+                <div class="card-body">
+                  <form name="signup">
+                    <div class="form-group">
+                      <p>
+                        <label>Email
+                          <input class="form-control" type="email" name="email" required placeholder="Enter email" />
+                        </label>
+                      </p>
+                      <p>
+                        <label>Password
+                          <input class="form-control" type="password" name="password" required placeholder="Password" />
+                        </label>
+                      </p>
+                      <button class="btn btn-primary" type="submit">Sign me up!</button>
+                      <div class="message">
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
           <br>
-          <!-- content -->
-            <article class="">
-              <!-- sign up -->
-              <div class="" id="sign-up">
-                <div class="row">
-                  <h2>
-                      Sign up
-                  </h2>
-                </div>
-                <div class="row">
-                  <p>Create a new user with the specified email and password</p>
-                </div>
-                <div class="row">
-                  <h3>Example code</h3>
-                </div>
-                <div class="row">
-                  <div class="code-block">
-                    <pre>
-                      <code>
-auth.signup(email, password)
-    .then(response => console.log("Sign up successful!Check your inbox!", response))
-    .catch(error => console.log("It's an error", error));
-                      </code>
-                    </pre>
-                  </div>
-                </div>
-                <div class="row">
-                  <h3>Example response</h3>
-                </div>
-                <div class="row">
-                  <div class="code-block">
-                    <pre>
-                      <code>
-  {
-    id: 'example-id',
-    aud: '',
-    role: '',
-    email: 'example@example.com',
-    confirmation_sent_at: '2018-04-27T22:36:59.636416916Z',
-    app_metadata: { provider: 'email' },
-    user_metadata: null,
-    created_at: '2018-04-27T22:36:59.632133283Z',
-    updated_at: '2018-04-27T22:37:00.061039863Z'
-  }
-                      </code>
-                    </pre>
-                  </div>
-                </div>
-                  <div class="row">
-                    <h4>Try it out!</h4>
-                  </div>
-                  <br>
-                  <div class="row">
-                      <div class="card">
-                        <div class="card-body">
-                          <form name="signup">
-                            <div class="form-group">
-                              <p>
-                                <label>Email
-                                <input class="form-control" type="email" name="email" required placeholder="Enter email"/></label>
-                              </p>
-                              <p>
-                                <label>Password
-                                <input class="form-control" type="password" name="password" required placeholder="Password"/></label>
-                              </p>
-                              <button class="btn btn-primary" type="submit">Sign me up!</button>
-                              <div class="message">
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-              <br>
-              <!-- confirm -->
-              <div class="" id="confirm">
-                <div class="row">
-                  <h2>
-                    <a >
-                      Confirm
-                    </a>
-                  </h2>
-                </div>
-                <div class="row">
-                  <p>
-                    This function confirms a user sign up via a unique confirmation token.<br>
-                    <br>When a new user signed up, a confirmation email will be sent to the registered email address.
-                    <br>(Make sure <code>Autoconfirm</code> isn't turned on under <a href="https://www.netlify.com/docs/identity/#adding-users">identity settings</a>.)
-                  </p>
-                  <p>
-                    In the email, there's a link that says <i>Confirm your email address</i>.
-                    When a user clicks on the link, it'll be redirected to the URL of the site including a <a href="https://en.wikipedia.org/wiki/Fragment_identifier">fragment identifier</a> <code>#confirmation_token=Iyo9xHvsGVbW-9A9v4sDmQ</code>.
-                  </p>
-                  <p>
-                    For security reason, the <code>confirmation_token</code> is hidden from the browser via a redirect. If you wish to manually confirm a user using the <code>auth.confirm(token)</code> method, copy the link location from the email and use the <code>curl -I</code> script to get the confirmation token in your terminal. E.g.,
-                  </p>
-                  <div class="code-block col-sm-12">
-                    <pre>
+          <!-- confirm -->
+          <div class="" id="confirm">
+            <div class="row">
+              <h2>
+                <a>
+                  Confirm
+                </a>
+              </h2>
+            </div>
+            <div class="row">
+              <p>
+                This function confirms a user sign up via a unique confirmation token.
+                <br>
+                <br>When a new user signed up, a confirmation email will be sent to the registered email address.
+                <br>(Make sure
+                <code>Autoconfirm</code> isn't turned on under
+                <a href="https://www.netlify.com/docs/identity/#adding-users">identity settings</a>.)
+              </p>
+              <p>
+                In the email, there's a link that says
+                <i>Confirm your email address</i>. When a user clicks on the link, it'll be redirected to the URL of the site
+                including a
+                <a href="https://en.wikipedia.org/wiki/Fragment_identifier">fragment identifier</a>
+                <code>#confirmation_token=Iyo9xHvsGVbW-9A9v4sDmQ</code>.
+              </p>
+              <p>
+                For security reason, the
+                <code>confirmation_token</code> is hidden from the browser via a redirect. If you wish to manually confirm a user
+                using the
+                <code>auth.confirm(token)</code> method, copy the link location from the email and use the
+                <code>curl -I</code> script to get the confirmation token in your terminal. E.g.,
+              </p>
+              <div class="code-block col-sm-12">
+                <pre>
                       <code>
   $ curl -I https://mandrillapp.com/track/click/30002868/example.netlify.com?p=example-token
   HTTP/1.1 302 Moved Temporarily
@@ -185,11 +171,11 @@ auth.signup(email, password)
   Location: https://example.netlify.com/#confirmation_token=Iyo9xHvsGVbW-9A9v4sDmQ
                       </code>
                     </pre>
-                  </div>
-                <div class="row">
-                  <h3>Example code</h3>
-                  <div class="code-block col-sm-12">
-                    <pre>
+              </div>
+              <div class="row">
+                <h3>Example code</h3>
+                <div class="code-block col-sm-12">
+                  <pre>
                       <code>
 auth
   .confirm(token)
@@ -201,12 +187,12 @@ auth
   });
                       </code>
                     </pre>
-                  </div>
                 </div>
-                <div class="row">
-                  <h3>Example response</h3>
-                  <div class="code-block">
-                    <pre>
+              </div>
+              <div class="row">
+                <h3>Example response</h3>
+                <div class="code-block">
+                  <pre>
                       <code>
 {
   "response": {
@@ -239,30 +225,30 @@ auth
 }
                       </code>
                     </pre>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-
                 </div>
               </div>
+              <div class="col-lg-12">
+
+              </div>
+            </div>
 
 
-              <!-- log in -->
-              <div class="" id="log-in">
-                <div class="row">
-                  <h2>
-                    <a>
-                      Log in
-                    </a>
-                  </h2>
-                </div>
-                <div class="row">
-                  <p>Handles user login via the specified email and password</p>
-                </div>
-                <div class="row">
-                  <h3>Example code</h3>
-                  <div class="code-block">
-                    <pre>
+            <!-- log in -->
+            <div class="" id="log-in">
+              <div class="row">
+                <h2>
+                  <a>
+                    Log in
+                  </a>
+                </h2>
+              </div>
+              <div class="row">
+                <p>Handles user login via the specified email and password</p>
+              </div>
+              <div class="row">
+                <h3>Example code</h3>
+                <div class="code-block">
+                  <pre>
                       <code>
 auth
   .login(email.value, password.value)
@@ -272,12 +258,12 @@ auth
   .catch(error => showMessage("Failed :( " + JSON.stringify(error), form));
                       </code>
                     </pre>
-                  </div>
                 </div>
-                <div class="row">
-                  <h3>Example response</h3>
-                  <div class="code-block">
-                    <pre>
+              </div>
+              <div class="row">
+                <h3>Example response</h3>
+                <div class="code-block">
+                  <pre>
                       <code>
 {
   "response": {
@@ -309,49 +295,53 @@ auth
 }
                       </code>
                     </pre>
-                  </div>
-                </div>
-                <div class="row">
-                  <h4>Try it out!</h4>
-                </div>
-                <div class="row" id="log-in">
-                  <div class="card">
-                    <div class="card-body">
-                      <form name="login" >
-                        <div class="form-group">
-                          <p>
-                            <label>Email<br/>
-                            <input class="form-control" type="email" name="email" required placeholder="Email address"/></label>
-                          </p>
-                          <p>
-                            <label>Password<br/>
-                            <input class="form-control" type="password" name="password" required placeholder="Password"/></label>
-                          </p>
-                          <button class="btn btn-primary" type="submit">Log in</button>
-                          <div class="message"></div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-
-                  </div>
                 </div>
               </div>
-              <br>
-              <!-- password recovery request -->
-              <div class="" id="request-pw-recovery">
-                <div class="row">
-                  <h2>
-                      Request password recovery
-                  </h2>
-                  <p>This function sends a request to GoTrue API and triggers a password recovery email to the specified email address</p>
-                </div>
-                  <div class="row">
-                    <h3>Example code</h3>
+              <div class="row">
+                <h4>Try it out!</h4>
+              </div>
+              <div class="row" id="log-in">
+                <div class="card">
+                  <div class="card-body">
+                    <form name="login">
+                      <div class="form-group">
+                        <p>
+                          <label>Email
+                            <br/>
+                            <input class="form-control" type="email" name="email" required placeholder="Email address" />
+                          </label>
+                        </p>
+                        <p>
+                          <label>Password
+                            <br/>
+                            <input class="form-control" type="password" name="password" required placeholder="Password" />
+                          </label>
+                        </p>
+                        <button class="btn btn-primary" type="submit">Log in</button>
+                        <div class="message"></div>
+                      </div>
+                    </form>
                   </div>
-                  <div class="row">
-                    <div class="code-block">
-                      <pre>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <br>
+          <!-- password recovery request -->
+          <div class="" id="request-pw-recovery">
+            <div class="row">
+              <h2>
+                Request password recovery
+              </h2>
+              <p>This function sends a request to GoTrue API and triggers a password recovery email to the specified email address</p>
+            </div>
+            <div class="row">
+              <h3>Example code</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
                         <code>
 auth
   .requestPasswordRecovery(email)
@@ -359,63 +349,68 @@ auth
   .catch(error => console.log("Error sending recovery mail: %o", error));
                         </code>
                       </pre>
-                    </div>
-                  </div>
-                    <div class="row">
-                      <h3>Example response</h3>
-                    </div>
-                    <div class="row">
-                      <div class="code-block">
-                        <pre>
+              </div>
+            </div>
+            <div class="row">
+              <h3>Example response</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
                           <code>
 {}
                           </code>
                         </pre>
-                      </div>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Try it out!</h4>
+            </div>
+            <div class="row">
+              <p>(Make sure you're logged in!)</p>
+            </div>
+            <div class="row">
+              <div class="card">
+                <div class="card-body">
+                  <form name="request_recovery">
+                    <div class="form-group">
+                      <button class="btn btn-primary" type="submit">Request recovery email</button>
                     </div>
-                    <div class="row">
-                      <h4>Try it out!</h4>
+                    <div class="message">
                     </div>
-                    <div class="row">
-                      <p>(Make sure you're logged in!)</p>
-                    </div>
-                    <div class="row">
-                      <div class="card">
-                        <div class="card-body">
-                          <form name="request_recovery">
-                            <div class="form-group">
-                              <button class="btn btn-primary" type="submit">Request recovery email</button>
-                            </div>
-                            <div class="message">
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                      <!-- <div class="row">
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row">
                         <button class="btn btn-default" type="button" name="button">
                           Forgot password!
                         </button>
                       </div> -->
-                      <br>
-                </div>
-              <!-- password recovery -->
-              <div class="" id="recoverypw">
-                <div class="row">
-                  <h2>
-                      Account recovery
-                  </h2>
-                </div>
-                  <div class="row">
-                    <p>This function recovers a user account via a recovery token.</p>
-                    <p>After a user requested password recovery, an email will be sent to their inbox with a <code>reset password</code> link.
-                      A user can login into the site again by clicking on the link. Their browser will be redirected to the URL of the site including a <a href="https://en.wikipedia.org/wiki/Fragment_identifier">fragment identifier</a> <code>recovery_token</code>.
-                      For security reason, the <code>recovery_token</code> is hidden from the browser via the redirect. If you wish to test it locally. Use `curl -I` command to substract the <code>recover_token</code> in your terminal. E.g.,
-                    </p>
-                  </div>
-                  <div class="row">
-                    <div class="code-block col-lg-12">
-                      <pre>
+            <br>
+          </div>
+          <!-- password recovery -->
+          <div class="" id="recoverypw">
+            <div class="row">
+              <h2>
+                Account recovery
+              </h2>
+            </div>
+            <div class="row">
+              <p>This function recovers a user account via a recovery token.</p>
+              <p>After a user requested password recovery, an email will be sent to their inbox with a
+                <code>reset password</code> link. A user can login into the site again by clicking on the link. Their browser will
+                be redirected to the URL of the site including a
+                <a href="https://en.wikipedia.org/wiki/Fragment_identifier">fragment identifier</a>
+                <code>recovery_token</code>. For security reason, the
+                <code>recovery_token</code> is hidden from the browser via the redirect. If you wish to test it locally. Use `curl
+                -I` command to substract the
+                <code>recover_token</code> in your terminal. E.g.,
+              </p>
+            </div>
+            <div class="row">
+              <div class="code-block col-lg-12">
+                <pre>
                         <code>
   $ curl -I https://mandrillapp.com/track/click/30002868/inspiring-ride-d3b2ae.netlify.com?p=somequery
   HTTP/1.1 302 Moved Temporarily
@@ -430,15 +425,15 @@ auth
   Location: https://inspiring-ride-d3b2ae.netlify.com/#recovery_token=sOyUPifHLfbzFet_ioB97w
                         </code>
                       </pre>
-                    </div>
+              </div>
 
-                  </div>
-                  <div class="row">
-                    <h3>Example code</h3>
-                  </div>
-                  <div class="row">
-                    <div class="code-block">
-                      <pre>
+            </div>
+            <div class="row">
+              <h3>Example code</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
                         <code>
 auth
   .recover(token)
@@ -448,14 +443,14 @@ auth
   .catch(error => console.log("Failed to verify recover token: %o", error));
                         </code>
                       </pre>
-                    </div>
-                  </div>
-                    <div class="row">
-                      <h3>Example response</h3>
-                    </div>
-                    <div class="row">
-                      <div class="code-block">
-                        <pre>
+              </div>
+            </div>
+            <div class="row">
+              <h3>Example response</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
                           <code>
 {
   "response": {
@@ -489,9 +484,9 @@ auth
 }
                           </code>
                         </pre>
-                      </div>
-                    </div>
-                    <!-- <div class="row">
+              </div>
+            </div>
+            <!-- <div class="row">
                       <h4>Try it out!</h4>
                     </div>
                     <div class="row">
@@ -510,38 +505,38 @@ auth
                         </div>
                       </div>
                     </div> -->
-                </div>
-                <br>
-              <!-- get current user -->
-              <div class="" id="current-user">
-                <div class="row">
-                  <h2>
-                    <a class="link">
-                      Get current user
-                    </a>
-                  </h2>
-                </div>
-                  <div class="row">
-                    <p>This function returns the current user object when a user is logged in.</p>
-                  </div>
-                  <div class="row">
-                    <h3>Example code</h3>
-                  </div>
-                  <div class="row">
-                    <div class="code-block">
-                      <pre>
+          </div>
+          <br>
+          <!-- get current user -->
+          <div class="" id="current-user">
+            <div class="row">
+              <h2>
+                <a class="link">
+                  Get current user
+                </a>
+              </h2>
+            </div>
+            <div class="row">
+              <p>This function returns the current user object when a user is logged in.</p>
+            </div>
+            <div class="row">
+              <h3>Example code</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
                         <code>
 const user = auth.currentUser();
                         </code>
                       </pre>
-                    </div>
-                  </div>
-                    <div class="row">
-                      <h3>Example response</h3>
-                    </div>
-                    <div class="row">
-                      <div class="code-block">
-                        <pre>
+              </div>
+            </div>
+            <div class="row">
+              <h3>Example response</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
                           <code>
 {
   "api": {
@@ -571,45 +566,45 @@ const user = auth.currentUser();
 }
                           </code>
                         </pre>
-                      </div>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Try it out!</h4>
+            </div>
+            <div class="row">
+              <p>(Make sure you're logged in)</p>
+            </div>
+            <div class="row">
+              <div class="card">
+                <div class="card-body">
+                  <form name="get_current_user">
+                    <button class="btn btn-primary" type="submit">Get current user!</button>
+                    <div class="message">
                     </div>
-                    <div class="row">
-                      <h4>Try it out!</h4>
-                    </div>
-                    <div class="row">
-                      <p>(Make sure you're logged in)</p>
-                    </div>
-                    <div class="row">
-                      <div class="card">
-                        <div class="card-body">
-                          <form name="get_current_user">
-                              <button class="btn btn-primary" type="submit">Get current user!</button>
-                              <div class="message">
-                              </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
+                  </form>
                 </div>
-                <br>
-              <!-- update user -->
-              <div class="" id="update-user">
-                <div class="row">
-                  <h2>
-                    <a class="link">
-                      Update user
-                    </a>
-                  </h2>
-                </div>
-                  <div class="row">
-                    <p>This function updates a user object with specified attributes.</p>
-                  </div>
-                  <div class="row">
-                    <h3>Example code</h3>
-                  </div>
-                  <div class="row">
-                    <div class="code-block">
-                      <pre>
+              </div>
+            </div>
+          </div>
+          <br>
+          <!-- update user -->
+          <div class="" id="update-user">
+            <div class="row">
+              <h2>
+                <a class="link">
+                  Update user
+                </a>
+              </h2>
+            </div>
+            <div class="row">
+              <p>This function updates a user object with specified attributes.</p>
+            </div>
+            <div class="row">
+              <h3>Example code</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
                         <code>
 const user = auth.currentUser();
 
@@ -622,14 +617,14 @@ user
   });
                         </code>
                       </pre>
-                    </div>
-                  </div>
-                    <div class="row">
-                      <h3>Example response</h3>
-                    </div>
-                    <div class="row">
-                      <div class="code-block">
-                        <pre>
+              </div>
+            </div>
+            <div class="row">
+              <h3>Example response</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
                           <code>
 {
   "api": {
@@ -661,55 +656,56 @@ user
 }
                           </code>
                         </pre>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Try it out!</h4>
+            </div>
+            <div class="row">
+              <p>(Make sure you're logged in)</p>
+            </div>
+            <div class="row">
+              <div class="card">
+                <div class="card-body">
+                  <form name="update_user">
+                    <div class="form-group">
+                      <p>
+                        Your email address:
+                      </p>
+                      <p id="user-email"></p>
+                      <p>
+                        <label>New password
+                          <input class="form-control" type="password" name="password" required placeholder="Password" />
+                        </label>
+                      </p>
+                      <button class="btn btn-primary" type="submit">Update user!</button>
+                      <div class="message">
                       </div>
                     </div>
-                    <div class="row">
-                      <h4>Try it out!</h4>
-                    </div>
-                    <div class="row">
-                      <p>(Make sure you're logged in)</p>
-                    </div>
-                    <div class="row">
-                      <div class="card">
-                        <div class="card-body">
-                          <form name="update_user">
-                            <div class="form-group">
-                              <p>
-                                Your email address:
-                              </p>
-                              <p id="user-email"></p>
-                              <p>
-                                <label>New password
-                                <input class="form-control" type="password" name="password" required placeholder="Password"/></label>
-                              </p>
-                              <button class="btn btn-primary" type="submit">Update user!</button>
-                              <div class="message">
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
+                  </form>
                 </div>
-                <br>
-              <!-- get jwt token -->
-              <div class="" id="get-jwt-token">
-                <div class="row">
-                  <h2>
-                    <a class="link">
-                      Get JWT token
-                    </a>
-                  </h2>
-                </div>
-                  <div class="row">
-                    <p>This function retrieves a JWT token from a currently logged in user</p>
-                  </div>
-                  <div class="row">
-                    <h3>Example code</h3>
-                  </div>
-                  <div class="row">
-                    <div class="code-block">
-                      <pre>
+              </div>
+            </div>
+          </div>
+          <br>
+          <!-- get jwt token -->
+          <div class="" id="get-jwt-token">
+            <div class="row">
+              <h2>
+                <a class="link">
+                  Get JWT token
+                </a>
+              </h2>
+            </div>
+            <div class="row">
+              <p>This function retrieves a JWT token from a currently logged in user</p>
+            </div>
+            <div class="row">
+              <h3>Example code</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
                         <code>
 const jwt = user.jwt();
 jwt
@@ -720,57 +716,57 @@ jwt
   });
                         </code>
                       </pre>
-                    </div>
-                  </div>
-                    <div class="row">
-                      <h3>Example response</h3>
-                    </div>
-                    <div class="row">
-                      <div class="code-block col-lg-12">
-                        <pre>
+              </div>
+            </div>
+            <div class="row">
+              <h3>Example response</h3>
+            </div>
+            <div class="row">
+              <div class="code-block col-lg-12">
+                <pre>
                           <code>
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjUyMTk4MTYsInN1YiI6ImE5NG.98YDkB6B9JbBlDlqqef2nme2tkAnsi30QVys9aevdCw debugger eval code:1:43
                           </code>
                         </pre>
-                      </div>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Try it out!</h4>
+            </div>
+            <div class="row">
+              <p>(Make sure you're logged in)</p>
+            </div>
+            <div class="row">
+              <div class="card">
+                <div class="card-body">
+                  <form name="get_jwt_token">
+                    <button class="btn btn-primary" type="submit">Get JWT token!</button>
+                    <div class="message">
                     </div>
-                    <div class="row">
-                      <h4>Try it out!</h4>
-                    </div>
-                    <div class="row">
-                      <p>(Make sure you're logged in)</p>
-                    </div>
-                    <div class="row">
-                      <div class="card">
-                        <div class="card-body">
-                          <form name="get_jwt_token">
-                            <button class="btn btn-primary" type="submit">Get JWT token!</button>
-                            <div class="message">
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
+                  </form>
                 </div>
-                <br>
-              <!-- logout -->
-              <div class="" id="log-out">
-                <div class="row">
-                  <h2>
-                    <a class="link">
-                      Log out
-                    </a>
-                  </h2>
-                </div>
-                  <div class="row">
-                    <p>This function removes the jwt token of the current user from local storage and log the user out.</p>
-                  </div>
-                  <div class="row">
-                    <h3>Example code</h3>
-                  </div>
-                  <div class="row">
-                    <div class="code-block">
-                      <pre>
+              </div>
+            </div>
+          </div>
+          <br>
+          <!-- logout -->
+          <div class="" id="log-out">
+            <div class="row">
+              <h2>
+                <a class="link">
+                  Log out
+                </a>
+              </h2>
+            </div>
+            <div class="row">
+              <p>This function removes the jwt token of the current user from local storage and log the user out.</p>
+            </div>
+            <div class="row">
+              <h3>Example code</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
                         <code>
 const user = auth.currentUser();
 user
@@ -782,65 +778,68 @@ user
   });
                         </code>
                       </pre>
-                    </div>
-                  </div>
-                    <div class="row">
-                      <h3>Example response</h3>
-                    </div>
-                    <div class="row">
-                      <div class="code-block">
-                        <pre>
+              </div>
+            </div>
+            <div class="row">
+              <h3>Example response</h3>
+            </div>
+            <div class="row">
+              <div class="code-block">
+                <pre>
                           <code>
                           </code>
                         </pre>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <h4>Try it out!</h4>
-                    </div>
-                    <div class="row">
-                      <p>(Make sure you're logged in)</p>
-                    </div>
-                    <div class="row">
-                      <div class="card">
-                        <div class="card-body">
-                          <form name="log_out">
-                            <button class="btn btn-primary" type="submit" name="button">Log out</button>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Try it out!</h4>
+            </div>
+            <div class="row">
+              <p>(Make sure you're logged in)</p>
+            </div>
+            <div class="row">
+              <div class="card">
+                <div class="card-body">
+                  <form name="log_out">
+                    <button class="btn btn-primary" type="submit" name="button">Log out</button>
+                  </form>
                 </div>
-                <br>
-            </article>
-        </div>
+              </div>
+            </div>
+          </div>
+          <br>
+        </article>
       </div>
     </div>
-    <!-- scroll to top button -->
-    <button class="btn btn-primary" onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-    <script>
+  </div>
+  <!-- scroll to top button -->
+  <button class="btn btn-primary" onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+  <script>
     // When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {
-  scrollFunction();
-};
+    window.onscroll = function () {
+      scrollFunction();
+    };
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    document.getElementById("myBtn").style.display = "block";
-  } else {
-    document.getElementById("myBtn").style.display = "none";
-  }
-}
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+      } else {
+        document.getElementById("myBtn").style.display = "none";
+      }
+    }
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
-</script>
-    <!-- bootstrap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
-  </body>
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+  <!-- bootstrap -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+</body>
+
 </html>

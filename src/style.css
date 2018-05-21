@@ -1,19 +1,34 @@
 body {
-  font-family: "Dosis", sans-serif;
+  margin-top: 48px;
+  font-family: 'Titillium Web', sans-serif;
 }
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
+.message {
+  margin: 1em;
 }
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
+.code-block {
+  padding: 20px;
+  margin: 10px;
+  background-color: #f7f7f9;
 }
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
+nav {
+  margin: 10px 0;
 }
 
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background-color: #555;
 }
