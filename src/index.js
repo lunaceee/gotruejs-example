@@ -160,7 +160,6 @@ document
       });
   });
 
-console.log("log out??", document.querySelector("form[name='log_out']"));
 //log out
 document.querySelector("form[name='log_out']").addEventListener("submit", e => {
   e.preventDefault();

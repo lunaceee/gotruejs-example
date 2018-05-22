@@ -1,6 +1,151 @@
+:root {
+  --baseFontSize: 18px;
+  --fontFamilySans: Roboto, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  --fontFamilyMono: "Roboto Mono", monospace;
+  --textColor: rgba(14, 30, 37, 0.87);
+  --borderColor: #e9ebeb;
+  --accentColor: #00ad9f;
+}
+
 body {
-  margin-top: 48px;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: var(--fontFamilySans);
+  font-size: var(--baseFontSize);
+  line-height: 1.5;
+  max-width: 40em;
+  padding: 1em;
+  margin: auto;
+  background: white;
+  color: var(--textColor);
+  counter-reset: example;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin-top: 1.5em;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.375em;
+  margin-top: 3em;
+}
+
+h3 {
+  font-size: 1.125em;
+}
+
+p {
+  margin: 1em 0 1.5em;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+article {
+  counter-increment: example;
+}
+
+article h2::before {
+  content: counter(example) ". ";
+}
+
+ul {
+  padding-left: 1.25em;
+  list-style: disc outside;
+}
+
+li {
+  display: inline-block;
+  list-style: none;
+  padding-left: 5px;
+  counter-reset: step;
+}
+
+/* ol li::before {
+  counter-increment: step;
+  content: counter(step) ". ";
+  float: left;
+  margin-right: 0.3em;
+} */
+
+input {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 0.5em;
+  padding: 0 0.5em;
+  height: 2.5em;
+  line-height: 2.5;
+  border: 2px solid var(--borderColor);
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+button,
+.button {
+  box-sizing: border-box;
+  display: inline-block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .08);
+  border: 0;
+  background: var(--accentColor);
+  color: white;
+  border-radius: 4px;
+  font-size: 1em;
+  font-weight: 500;
+  height: 2.5em;
+  line-height: 2.5;
+  padding: 0 1em;
+  min-width: 10em;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  transform: translateY(0);
+  transition: all .15s ease;
+}
+
+button:focus,
+button:hover {
+  box-shadow: 0 7px 14px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .08);
+  transform: translateY(-1px);
+}
+
+form {
+  max-width: 20em;
+}
+
+pre,
+code {
+  font-family: var(--fontFamilyMono);
+  font-size: 14px;
+  background-color: #fafafa;
+  border-radius: 4px;
+}
+
+code {
+  padding: 0.2em 0.4em;
+}
+
+pre {
+  padding: 1em;
+  overflow: auto;
+}
+
+pre code {
+  font-size: 100%;
+  background: transparent;
+  padding: 0;
+  border: 0;
 }
 
 .message {
@@ -11,10 +156,6 @@ body {
   padding: 20px;
   margin: 10px;
   background-color: #f7f7f9;
-}
-
-nav {
-  margin: 10px 0;
 }
 
 #myBtn {
