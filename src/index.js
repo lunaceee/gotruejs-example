@@ -1,8 +1,8 @@
 import "file-loader?name=index.html!./index.html";
 import GoTrue from "gotrue-js";
+import "./style.css";
 
 let auth;
-
 
 // auth = new GoTrue({
 //   APIUrl: "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity"
