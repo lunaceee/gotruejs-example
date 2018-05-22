@@ -1,6 +1,5 @@
 import "file-loader?name=index.html!./index.html";
 import GoTrue from "gotrue-js";
-import "./style.css";
 
 let auth;
 

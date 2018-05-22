@@ -4,6 +4,8 @@
 <head>
   <title>GoTrue JS Demo Site</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Mono" rel="stylesheet">
+  <link rel="stylesheet" href="./prism.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -122,7 +124,7 @@ auth.signup(email, password)
       <code>auth.confirm(token)</code> method, copy the link location from the email and use the
       <code>curl -I</code> script to get the confirmation token in your terminal. E.g.,
     </p>
-    <pre>
+    <pre class="language-js">
                       <code>
   $ curl -I https://mandrillapp.com/track/click/30002868/example.netlify.com?p=example-token
   HTTP/1.1 302 Moved Temporarily
@@ -138,7 +140,7 @@ auth.signup(email, password)
                       </code>
                     </pre>
     <h3>Example code</h3>
-    <pre>
+    <pre class="language-js">
                       <code>
 auth
   .confirm(token)
@@ -151,7 +153,7 @@ auth
                       </code>
                     </pre>
     <h3>Example response</h3>
-    <pre>
+    <pre class="language-js">
                       <code>
 {
   "response": {
@@ -192,7 +194,7 @@ auth
     </h2>
     <p>Handles user login via the specified email and password</p>
     <h3>Example code</h3>
-    <pre>
+    <pre class="language-js">
             <code>
 auth
   .login(email.value, password.value)
@@ -203,7 +205,7 @@ auth
             </code>
         </pre>
     <h3>Example response</h3>
-    <pre>
+    <pre class="language-js">
           <code>
 {
   "response": {
@@ -260,7 +262,7 @@ auth
     </h2>
     <p>This function sends a request to GoTrue API and triggers a password recovery email to the specified email address</p>
     <h3>Example code</h3>
-    <pre>
+    <pre class="language-js">
                         <code>
 auth
   .requestPasswordRecovery(email)
@@ -269,7 +271,7 @@ auth
                         </code>
                       </pre>
     <h3>Example response</h3>
-    <pre>
+    <pre class="language-js">
                           <code>
 {}
                           </code>
@@ -299,7 +301,7 @@ auth
       to substract the
       <code>recover_token</code> in your terminal. E.g.,
     </p>
-    <pre>
+    <pre class="language-js">
                         <code>
   $ curl -I https://mandrillapp.com/track/click/30002868/inspiring-ride-d3b2ae.netlify.com?p=somequery
   HTTP/1.1 302 Moved Temporarily
@@ -316,7 +318,7 @@ auth
                       </pre>
 
     <h3>Example code</h3>
-    <pre>
+    <pre class="language-js">
                         <code>
 auth
   .recover(token)
@@ -327,7 +329,7 @@ auth
                         </code>
                       </pre>
     <h3>Example response</h3>
-    <pre>
+    <pre class="language-js">
                           <code>
 {
   "response": {
@@ -369,13 +371,13 @@ auth
     </h2>
     <p>This function returns the current user object when a user is logged in.</p>
     <h3>Example code</h3>
-    <pre>
+    <pre class="language-js">
                         <code>
 const user = auth.currentUser();
                         </code>
                       </pre>
     <h3>Example response</h3>
-    <pre>
+    <pre class="language-js">
                           <code>
 {
   "api": {
@@ -420,7 +422,7 @@ const user = auth.currentUser();
     </h2>
     <p>This function updates a user object with specified attributes.</p>
     <h3>Example code</h3>
-    <pre>
+    <pre class="language-js">
                         <code>
 const user = auth.currentUser();
 
@@ -434,7 +436,7 @@ user
                         </code>
                       </pre>
     <h3>Example response</h3>
-    <pre>
+    <pre class="language-js">
                           <code>
 {
   "api": {
@@ -490,7 +492,7 @@ user
     </h2>
     <p>This function retrieves a JWT token from a currently logged in user</p>
     <h3>Example code</h3>
-    <pre>
+    <pre class="language-js">
                         <code>
 const jwt = user.jwt();
 jwt
@@ -502,7 +504,7 @@ jwt
                         </code>
                       </pre>
     <h3>Example response</h3>
-    <pre>
+    <pre class="language-js">
                           <code>
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjUyMTk4MTYsInN1YiI6ImE5NG.98YDkB6B9JbBlDlqqef2nme2tkAnsi30QVys9aevdCw debugger eval code:1:43
                           </code>
@@ -522,7 +524,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjUyMTk4MTYsInN1YiI6ImE5NG.98YD
     </h2>
     <p>This function removes the jwt token of the current user from local storage and log the user out.</p>
     <h3>Example code</h3>
-    <pre>
+    <pre class="language-js">
                         <code>
 const user = auth.currentUser();
 user
@@ -566,6 +568,7 @@ user
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.14.0/prism.min.js"></script>
+  <script src="./prism.js"></script>
   <script src="main.js"></script>
 </body>
 
