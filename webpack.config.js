@@ -1,5 +1,11 @@
 module.exports = {
   mode: "production",
+  module: {
+    rules: [{
+      test: /\.css$/,
+      exclude: /node_modules/,
+    }]
+  },
   devServer: {
     proxy: {
       "/.netlify": {

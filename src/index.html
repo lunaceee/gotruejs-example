@@ -4,13 +4,11 @@
 <head>
   <title>GoTrue JS Demo Site</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Mono" rel="stylesheet">
-  <link rel="stylesheet" href="./prism.css">
-  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
   <h1>Netlify GoTrue JS Library</h1>
-  <ul class=" ">
+  <nav class=" ">
     <li>
       <a class=" " href="#sign-up">Sign up</a>
     </li>
@@ -38,16 +36,20 @@
     <li>
       <a class=" " href="#log-out ">Log out</a>
     </li>
-  </ul>
+  </nav>
   <p>This is a playground for you to playaround Netlify's
     <a href="https://github.com/netlify/gotrue-js">gotrue-js library</a>.
   </p>
   <form name="endpoint">
-    <input type="text " name="apiendpoint" required placeholder="Enter your identity API Endpoint " />
     <p>
-      <small>Find the endpoint on the identity page of your Netlify site dashboard</small>
+      <label>Enter your identity API Endpoint
+        <input type="text " name="apiendpoint" required />
+      </label>
     </p>
-    <button type="submit ">Submit</button>
+    <small>(Find the endpoint on the identity page of your Netlify site dashboard)</small>
+    <p>
+      <button type="submit ">Submit</button>
+    </p>
     <p id="alert-msg"></p>
   </form>
   <!-- sign up -->
@@ -60,7 +62,7 @@
     <pre class="language-js">
       <code>
 auth.signup(email, password)
-    .then(response => console.log("Sign up successful!Check your inbox! ", response))
+    .then(response => console.log("Success!Check your inbox! ", response))
     .catch(error => console.log("It 's an error", error));
       </code>
     </pre>
@@ -85,12 +87,12 @@ auth.signup(email, password)
     <form name="signup">
       <p>
         <label>Email
-          <input type="email" name="email" required placeholder="Enter email" />
+          <input type="email" name="email" required />
         </label>
       </p>
       <p>
         <label>Password
-          <input type="password" name="password" required placeholder="Password" />
+          <input type="password" name="password" required />
         </label>
       </p>
       <button type="submit">Sign me up!</button>
@@ -241,17 +243,17 @@ auth
     <form name="login">
       <p>
         <label>Email
-          <br/>
-          <input type="email" name="email" required placeholder="Email address" />
+          <input type="email" name="email" required />
         </label>
       </p>
       <p>
         <label>Password
-          <br/>
-          <input type="password" name="password" required placeholder="Password" />
+          <input type="password" name="password" required />
         </label>
       </p>
-      <button type="submit">Log in</button>
+      <p>
+        <button type="submit">Log in</button>
+      </p>
       <div class="message"></div>
     </form>
   </article>
@@ -477,7 +479,7 @@ user
       <p id="user-email"></p>
       <p>
         <label>New password
-          <input type="password" name="password" required placeholder="Password" />
+          <input type="password" name="password" required />
         </label>
       </p>
       <button type="submit">Update user!</button>
@@ -540,7 +542,7 @@ user
     <h3>Try it out!</h3>
     <p>(Make sure you're logged in)</p>
     <form name="log_out">
-      <button type="submit" name="button">Log out</button>
+      <button type="submit" class="button">Log out</button>
       <div class="message"></div>
     </form>
   </article>
@@ -568,7 +570,6 @@ user
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.14.0/prism.min.js"></script>
-  <script src="./prism.js"></script>
   <script src="main.js"></script>
 </body>
 

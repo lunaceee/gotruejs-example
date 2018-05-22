@@ -21,6 +21,23 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+#myBtn {
+  width: 5em;
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+
 h1,
 h2,
 h3 {
@@ -88,7 +105,7 @@ input {
   line-height: 2.5;
   border: 2px solid var(--borderColor);
   border-radius: 4px;
-  font-weight: bold;
+  color: #3297d3;
 }
 
 button,
@@ -148,6 +165,80 @@ pre code {
   border: 0;
 }
 
+code .token {
+  padding: 0;
+  margin: 0;
+}
+
+.language-php .token.operator,
+code .token.atrule,
+code .token.keyword {
+  color: #6772e5;
+}
+
+code.language-markup .token.namespace,
+code .token.attr-name,
+code .token.selector,
+code .token.tag,
+code .token.tag * {
+  color: #0075d6;
+}
+
+code .token.attr-name {
+  font-style: italic;
+}
+
+code .token.comment {
+  color: #91a2b0;
+}
+
+code.language-url,
+code .token.function,
+code .token.url {
+  color: #3297d3;
+}
+
+.language-ruby .token.constant+.token.punctuation,
+.language-ruby .token.constant+.token.punctuation+.token.symbol,
+code .token.boolean,
+code .token.builtin,
+code .token.class-name,
+code .token.constant,
+code .token.namespace {
+  color: #2191ef;
+}
+
+code .token.number {
+  color: #fa755a;
+}
+
+.language-bash .token.function,
+code .token.curl,
+code .token.option,
+code .token.variable {
+  color: teal;
+}
+
+.language-bash .token.option,
+code.language-css .property,
+code .token.parameter,
+code .token.symbol {
+  color: #d14;
+}
+
+code.language-html .token.attr-value>.punctuation:not(:first-child),
+code.language-markup .token.attr-value>.punctuation:not(:first-child),
+code .token.attr-value,
+code .token.macro,
+code .token.string,
+code .token.value {
+  color: #159570;
+}
+
+code .token.macro .keyword {
+  color: #064508;
+}
+
 .message {
   margin: 1em;
 }
@@ -156,20 +247,4 @@ pre code {
   padding: 20px;
   margin: 10px;
   background-color: #f7f7f9;
-}
-
-#myBtn {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-#myBtn:hover {
-  background-color: #555;
 }
