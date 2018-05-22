@@ -3,22 +3,8 @@ import GoTrue from "gotrue-js";
 import 'normalize.css';
 import "./style.css";
 
+// instantiate auth
 let auth;
-
-// auth = new GoTrue({
-//   APIUrl: "https://inspiring-ride-d3b2ae.netlify.com/.netlify/identity"
-// });
-
-// auth
-//   .login("luna+07@netlify.com", "2222")
-//   .then(response => console.log("auth", response))
-//   .catch(error => error);
-
-function identifyAuth(form) {
-  if (!auth) {
-    showMessage(`<p>Did you paste in your API endpoint?</p>`, form)
-  }
-}
 
 document
   .querySelector("form[name='endpoint']")
@@ -42,6 +28,10 @@ window.auth = auth;
 document.querySelector("form[name='signup']").addEventListener("submit", e => {
   e.preventDefault();
   const form = e.target;
+  if (!auth) {
+    noAuthFound(form)
+  }
+
   const {
     email,
     password
@@ -60,6 +50,9 @@ document.querySelector("#user-email").textContent = "Are you logged in?";
 document.querySelector("form[name='login']").addEventListener("submit", e => {
   e.preventDefault();
   const form = e.target;
+  if (!auth) {
+    noAuthFound(form)
+  }
   const {
     email,
     password
@@ -84,6 +77,15 @@ document
   .addEventListener("submit", e => {
     e.preventDefault();
     const form = e.target;
+
+    if (!auth) {
+      noAuthFound(form)
+    }
+
+    if (!auth.currentUser()) {
+      noUserFound(form)
+    }
+
     const user = auth.currentUser();
     const email = user.email;
 
@@ -97,7 +99,6 @@ document
       )
       .catch(error =>
         showMessage(`Something went wrong :( <code>${JSON.stringify(error)}</code>`, form));
-
   });
 
 //get current user
@@ -148,6 +149,13 @@ document
   .addEventListener("submit", e => {
     e.preventDefault();
     const form = e.target;
+    if (!auth) {
+      noAuthFound(form)
+    }
+
+    if (!auth.currentUser()) {
+      noUserFound(form)
+    }
     const user = auth.currentUser();
     const jwt = user.jwt();
 
@@ -171,6 +179,13 @@ document
 document.querySelector("form[name='log_out']").addEventListener("submit", e => {
   e.preventDefault();
   const form = e.target;
+  if (!auth) {
+    noAuthFound(form)
+  }
+
+  if (!auth.currentUser()) {
+    noUserFound(form)
+  }
   const user = auth.currentUser();
   user
     .logout()
@@ -182,3 +197,23 @@ document.querySelector("form[name='log_out']").addEventListener("submit", e => {
       throw error;
     });
 });
+
+//helper functions
+
+function noAuthFound(form) {
+  showMessage(`<p>Did you paste in your API endpoint?</p>`, form);
+}
+
+function noUserFound(form) {
+  showMessage(`<p>Did you log in?</p>`, form)
+}
+
+function showMessage(msg, el) {
+  el.querySelector(".message").innerHTML = msg;
+}
+
+function clearPage() {
+  document.querySelectorAll(".message").forEach(el => {
+    el.textContent = "";
+  });
+}

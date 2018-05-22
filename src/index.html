@@ -8,9 +8,45 @@
 
 <body>
   <h1>Netlify GoTrue JS Library</h1>
-  <p>This is a playground for you to playaround Netlify's
+  <p>Welcome to the playground of Netlify's
     <a href="https://github.com/netlify/gotrue-js">gotrue-js library</a>.
   </p>
+  <p>
+    You can test out the authentication methods with your own site. Take a peek at the
+    <a href="">source code</a> or
+    <a href="">deploy a copy to Netlify</a> to play around with the code by yourself.
+  </p>
+  <h2>Authentication methods</h2>
+  <nav class=" ">
+    <li>
+      <a href="#signup">Sign up</a>
+    </li>
+    <li>
+      <a href="#confirm ">Confirmation</a>
+    </li>
+    <li>
+      <a href="#log-in ">Log in</a>
+    </li>
+    <li>
+      <a href="#request-pw-recovery ">Request Password Recovery</a>
+    </li>
+    <li>
+      <a href="#recoverypw ">Recover</a>
+    </li>
+    <li>
+      <a href="#current-user ">Get current user</a>
+    </li>
+    <li>
+      <a href="#update-user ">Update user</a>
+    </li>
+    <li>
+      <a href="#get-jwt-token ">Get JWT token</a>
+    </li>
+    <li>
+      <a href="#log-out ">Log out</a>
+    </li>
+  </nav>
+  <!-- api endpoint -->
   <form name="endpoint" id="form-width">
     <p>
       <label>Enter your identity API Endpoint
@@ -23,38 +59,8 @@
     </p>
     <p id="alert-msg"></p>
   </form>
-  <h2>Authentication methods</h2>
-  <nav class=" ">
-    <li>
-      <a class=" " href="#sign-up">Sign up</a>
-    </li>
-    <li>
-      <a class=" " href="#confirm ">Confirmation</a>
-    </li>
-    <li>
-      <a class=" " href="#log-in ">Log in</a>
-    </li>
-    <li>
-      <a class=" " href="#request-pw-recovery ">Request Password Recovery</a>
-    </li>
-    <li>
-      <a class=" " href="#recoverypw ">Recover</a>
-    </li>
-    <li>
-      <a class=" " href="#current-user ">Get current user</a>
-    </li>
-    <li>
-      <a class=" " href="#update-user ">Update user</a>
-    </li>
-    <li>
-      <a class=" " href="#get-jwt-token ">Get JWT token</a>
-    </li>
-    <li>
-      <a class=" " href="#log-out ">Log out</a>
-    </li>
-  </nav>
   <!-- sign up -->
-  <article id="sign-up ">
+  <article id="signup ">
     <h2>
       Sign up
     </h2>
@@ -290,7 +296,7 @@ auth
     </form>
   </article>
   <!-- password recovery -->
-  <article class="" id="recoverypw">
+  <article id="recoverypw">
     <h2>
       Account recovery
     </h2>
@@ -368,7 +374,7 @@ auth
                         </pre>
   </article>
   <!-- get current user -->
-  <article class="" id="current-user">
+  <article id="current-user">
     <h2>
       Get current user
     </h2>
@@ -419,7 +425,7 @@ const user = auth.currentUser();
     </form>
   </article>
   <!-- update user -->
-  <article class="" id="update-user">
+  <article id="update-user">
     <h2>
       Update user
     </h2>
@@ -489,7 +495,7 @@ user
     </form>
   </article>
   <!-- get jwt token -->
-  <article class="" id="get-jwt-token">
+  <article id="get-jwt-token">
     <h2>
       Get JWT token
     </h2>
@@ -521,7 +527,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjUyMTk4MTYsInN1YiI6ImE5NG.98YD
     </form>
   </article>
   <!-- logout -->
-  <article class="" id="log-out">
+  <article id="log-out">
     <h2>
       Log out
     </h2>
