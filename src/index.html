@@ -8,6 +8,21 @@
 
 <body>
   <h1>Netlify GoTrue JS Library</h1>
+  <p>This is a playground for you to playaround Netlify's
+    <a href="https://github.com/netlify/gotrue-js">gotrue-js library</a>.
+  </p>
+  <form name="endpoint">
+    <p>
+      <label>Enter your identity API Endpoint
+        <input type="text " name="apiendpoint" required />
+      </label>
+    </p>
+    <small>(Find the endpoint on the identity page of your Netlify site dashboard)</small>
+    <p>
+      <button type="submit ">Submit</button>
+    </p>
+    <p id="alert-msg"></p>
+  </form>
   <nav class=" ">
     <li>
       <a class=" " href="#sign-up">Sign up</a>
@@ -37,21 +52,6 @@
       <a class=" " href="#log-out ">Log out</a>
     </li>
   </nav>
-  <p>This is a playground for you to playaround Netlify's
-    <a href="https://github.com/netlify/gotrue-js">gotrue-js library</a>.
-  </p>
-  <form name="endpoint">
-    <p>
-      <label>Enter your identity API Endpoint
-        <input type="text " name="apiendpoint" required />
-      </label>
-    </p>
-    <small>(Find the endpoint on the identity page of your Netlify site dashboard)</small>
-    <p>
-      <button type="submit ">Submit</button>
-    </p>
-    <p id="alert-msg"></p>
-  </form>
   <!-- sign up -->
   <article id="sign-up ">
     <h2>
@@ -548,7 +548,7 @@ user
   </article>
 
   <!-- scroll to top button -->
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+  <span onclick="topFunction()" id="toTop" title="Go to top">Top</span>
   <script>
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function () {
@@ -557,9 +557,9 @@ user
 
     function scrollFunction() {
       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("myBtn").style.display = "block";
+        document.getElementById("toTop").style.display = "block";
       } else {
-        document.getElementById("myBtn").style.display = "none";
+        document.getElementById("toTop").style.display = "none";
       }
     }
 
