@@ -14,6 +14,12 @@ let auth;
 //   .then(response => console.log("auth", response))
 //   .catch(error => error);
 
+function identifyAuth(form) {
+  if (!auth) {
+    showMessage(`<p>Did you paste in your API endpoint?</p>`, form)
+  }
+}
+
 document
   .querySelector("form[name='endpoint']")
   .addEventListener("submit", e => {
@@ -91,6 +97,7 @@ document
       )
       .catch(error =>
         showMessage(`Something went wrong :( <code>${JSON.stringify(error)}</code>`, form));
+
   });
 
 //get current user

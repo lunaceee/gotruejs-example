@@ -11,18 +11,19 @@
   <p>This is a playground for you to playaround Netlify's
     <a href="https://github.com/netlify/gotrue-js">gotrue-js library</a>.
   </p>
-  <form name="endpoint">
+  <form name="endpoint" id="form-width">
     <p>
       <label>Enter your identity API Endpoint
         <input type="text " name="apiendpoint" required />
       </label>
+      <small>( Copy the endpoint on the identity page of your Netlify site dashboard )</small>
     </p>
-    <small>(Find the endpoint on the identity page of your Netlify site dashboard)</small>
     <p>
       <button type="submit ">Submit</button>
     </p>
     <p id="alert-msg"></p>
   </form>
+  <h2>Authentication methods</h2>
   <nav class=" ">
     <li>
       <a class=" " href="#sign-up">Sign up</a>
@@ -374,10 +375,10 @@ auth
     <p>This function returns the current user object when a user is logged in.</p>
     <h3>Example code</h3>
     <pre class="language-js">
-                        <code>
+      <code>
 const user = auth.currentUser();
-                        </code>
-                      </pre>
+      </code>
+    </pre>
     <h3>Example response</h3>
     <pre class="language-js">
                           <code>
@@ -495,7 +496,7 @@ user
     <p>This function retrieves a JWT token from a currently logged in user</p>
     <h3>Example code</h3>
     <pre class="language-js">
-                        <code>
+      <code>
 const jwt = user.jwt();
 jwt
   .then(response => console.log("This is a JWT token", response))
@@ -503,8 +504,8 @@ jwt
     console.log("Error fetching JWT token", error);
     throw error;
   });
-                        </code>
-                      </pre>
+      </code>
+    </pre>
     <h3>Example response</h3>
     <pre class="language-js">
                           <code>
